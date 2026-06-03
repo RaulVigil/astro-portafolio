@@ -1,0 +1,25 @@
+---
+import { navItems } from "../data";
+import cvUrl from "../assets/CV_RaulVigil.pdf";
+---
+
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300 ease-in-out">
+  <div class="max-w-[1200px] mx-auto flex justify-between items-center px-[24px] py-4">
+    <span class="font-headline-md text-headline-md font-bold text-primary-fixed">Raúl Vigil</span>
+    
+    <div class="hidden md:flex items-center gap-8">
+      {navItems.map((item, index) => (
+        <a 
+          class={`font-body-md text-body-md transition-colors duration-300 ${index === 0 ? 'text-primary-fixed-dim font-bold border-b-2 border-primary py-1' : 'text-outline hover:text-primary-fixed'}`} 
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    
+    <a href={cvUrl} target="_blank" rel="noopener noreferrer" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform inline-block">
+      Resume
+    </a>
+  </div>
+</nav>

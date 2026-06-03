@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+import photoUrl from "../assets/photo.png";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const { 
+  title, 
+  description = "Portafolio de Desarrollador Web Profesional", 
+  image = photoUrl.src,
+  canonicalURL = "https://raulo.dev" 
+} = Astro.props;
+
+const siteName = "Raúl Vigil - Portafolio";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Raúl Vigil",
+  "jobTitle": "Ingeniero en Sistemas & Full Stack Developer",
+  "url": canonicalURL,
+  "image": new URL(image, canonicalURL).toString(),
+  "sameAs": [
+    "https://www.linkedin.com/in/raulvigil/",
+    "https://github.com/RaulVigil"
+  ]
+};
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container antialiased">
+    <slot />
+    
+    <script>
+      // Scroll Observer for reveals
+      const observerOptions = {
+          threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('active');
+              }
+          });
+      }, observerOptions);
+
+      // We need to re-run this when components mount if using framework islands,
+      // but in Astro this runs on page load and finds all statically rendered classes.
+      // Wait for DOM to be ready
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+      });
+      
+      // Since some components might be hydrated by React later, we can also use a MutationObserver or just let React handle its own.
+      // For simplicity, we just observe what's in the DOM initially.
+      setTimeout(() => {
+        document.querySelectorAll('.reveal-on-scroll:not(.observed)').forEach(el => {
+          el.classList.add('observed');
+          observer.observe(el);
+        });
+      }, 500);
+    </script>
+  </body>
+</html>

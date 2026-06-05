@@ -72,9 +72,28 @@ const schema = {
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   </head>
   <body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container antialiased">
+    <!-- Interactive Mesh Background -->
+    <div class="interactive-mesh-bg" id="meshBg">
+      <div class="mesh-blob blob-1"></div>
+      <div class="mesh-blob blob-2"></div>
+      <div class="mesh-blob blob-3"></div>
+    </div>
+
     <slot />
     
     <script>
+      // Mouse tracking for mesh background
+      document.addEventListener('mousemove', (e) => {
+        const root = document.documentElement;
+        // Calculate mouse position as a percentage from center (-1 to 1)
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        
+        // Set CSS variables for the animation to use
+        root.style.setProperty('--mouse-x', `${x * 30}px`);
+        root.style.setProperty('--mouse-y', `${y * 30}px`);
+      });
+
       // Scroll Observer for reveals
       const observerOptions = {
           threshold: 0.1
@@ -83,22 +102,19 @@ const schema = {
       const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
               if (entry.isIntersecting) {
-                  entry.target.classList.add('active');
+                  entry.target.classList.add('active'); // For v1 backward compatibility
+                  entry.target.classList.add('is-visible'); // For v2
               }
           });
       }, observerOptions);
 
-      // We need to re-run this when components mount if using framework islands,
-      // but in Astro this runs on page load and finds all statically rendered classes.
       // Wait for DOM to be ready
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal-on-scroll, .animate-on-scroll').forEach(el => observer.observe(el));
       });
       
-      // Since some components might be hydrated by React later, we can also use a MutationObserver or just let React handle its own.
-      // For simplicity, we just observe what's in the DOM initially.
       setTimeout(() => {
-        document.querySelectorAll('.reveal-on-scroll:not(.observed)').forEach(el => {
+        document.querySelectorAll('.reveal-on-scroll:not(.observed), .animate-on-scroll:not(.observed)').forEach(el => {
           el.classList.add('observed');
           observer.observe(el);
         });

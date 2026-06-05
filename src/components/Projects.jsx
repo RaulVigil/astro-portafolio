@@ -1,85 +1,78 @@
-import React from "react";
+import React from 'react';
 
-const Projects = () => {
+export default function Projects() {
   return (
-    <section className="py-[120px] bg-surface-container-lowest/50 px-[24px]" id="projects">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="text-center mb-20 reveal-on-scroll">
-          <h2 className="font-headline-lg text-headline-lg mb-4">Proyectos Destacados</h2>
-          <p className="text-on-surface-variant font-body-lg max-w-2xl mx-auto">Sistemas empresariales y plataformas digitales de alto rendimiento.</p>
-        </div>
+    <section className="py-stack-lg border-t border-border-subtle/50 animate-on-scroll" id="proyectos">
+      <h2 className="text-headline-md font-headline-md text-primary mb-10 inline-flex items-center gap-2">
+        <span className="material-symbols-outlined">folder_open</span> Proyectos Destacados
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Project 1 */}
-          <div className="group reveal-on-scroll">
-            <div className="overflow-hidden rounded-2xl mb-6 aspect-video bg-surface-container-high border border-white/5 relative">
-              <img 
-                alt="Veterinaria Mi Mejor Amigo" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-            </div>
-            <h3 className="font-headline-md text-headline-md mb-3 text-primary-container">Veterinaria Mi Mejor Amigo</h3>
-            <p className="text-on-surface-variant mb-6 font-body-md">Sistema integral de expedientes médicos con portal móvil de solo lectura para dueños de mascotas. Optimización de flujos administrativos.</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">React 19</span>
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">CodeIgniter 4</span>
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">JWT</span>
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">Tailwind</span>
-            </div>
+        {/* Project 1 */}
+        <div className="glass-panel rounded-xl overflow-hidden group">
+          <div className="h-48 bg-surface-container-high relative overflow-hidden">
+            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps" alt="FinanceApp" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
-
-          {/* Project 2 */}
-          <div className="group reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
-            <div className="overflow-hidden rounded-2xl mb-6 aspect-video bg-surface-container-high border border-white/5 relative">
-              <img 
-                alt="JAX International Investment" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772745584/vistaalvalle/unnamed_3_mp3aee.jpg?_s=public-apps"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-            </div>
-            <h3 className="font-headline-md text-headline-md mb-3 text-primary-container">JAX International Investment</h3>
-            <p className="text-on-surface-variant mb-6 font-body-md">Plataforma inmobiliaria interactiva con mapa de lotificaciones en tiempo real y cotizaciones automatizadas para inversores globales.</p>
+          <div className="p-6">
+            <h3 className="text-body-lg font-headline-md text-text-primary mb-2">FinanceApp</h3>
+            <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Aplicación financiera integral para gestión de gastos e ingresos con visualización de datos en tiempo real.</p>
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">WordPress</span>
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">ACF PRO</span>
-              <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">Bootstrap</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">React</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">CI4</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">Tailwind</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">JWT</span>
             </div>
-          </div>
-
-          {/* Project 3 - Large/Centered */}
-          <div className="md:col-span-2 group reveal-on-scroll">
-            <div className="grid md:grid-cols-2 gap-8 items-center bg-surface-container p-8 rounded-3xl border border-white/5">
-              <div className="overflow-hidden rounded-xl aspect-video relative order-2 md:order-1">
-                <img 
-                  alt="FinanceApp" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps"
-                  loading="lazy"
-                />
-              </div>
-              <div className="order-1 md:order-2">
-                <h3 className="font-headline-md text-headline-md mb-4 text-primary-container">FinanceApp</h3>
-                <p className="text-on-surface-variant mb-6 font-body-lg">Dashboard de finanzas personales con sincronización de saldos en tiempo real y reportes analíticos de consumo. Enfoque en UX fluida y seguridad de datos.</p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-3 py-1 rounded">React</span>
-                  <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-3 py-1 rounded">CodeIgniter 4</span>
-                  <span className="text-code-sm font-code-sm text-secondary bg-secondary/10 px-3 py-1 rounded">MySQL</span>
-                </div>
-                <button className="flex items-center gap-2 text-primary-container font-bold hover:underline">
-                  Explorar Caso de Estudio <span className="material-symbols-outlined">north_east</span>
-                </button>
-              </div>
-            </div>
+            <a href="https://financeapp.raulo.dev/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-surface-tint hover:text-primary transition-colors group-hover:translate-x-1 duration-300">
+              Visitar App <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+            </a>
           </div>
         </div>
+
+        {/* Project 2 */}
+        <div className="glass-panel rounded-xl overflow-hidden group">
+          <div className="h-48 bg-surface-container-high relative overflow-hidden">
+            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps" alt="Vet Admin" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 filter grayscale group-hover:grayscale-0" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-body-lg font-headline-md text-text-primary mb-2">Sistema Administrativo Veterinaria</h3>
+            <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Plataforma de gestión completa para clínicas veterinarias, control de citas, historial clínico y facturación.</p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">CI4</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Bootstrap</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Firebase</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">JWT</span>
+            </div>
+            <a href="#" className="inline-flex items-center text-label-md font-label-md text-secondary hover:text-tertiary transition-colors group-hover:translate-x-1 duration-300">
+              Ver Detalles <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Project 3 */}
+        <div className="glass-panel rounded-xl overflow-hidden group">
+          <div className="h-48 bg-surface-container-high relative overflow-hidden">
+            <img src="/images/jax-website.png" alt="Real Estate" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-body-lg font-headline-md text-text-primary mb-2">Sitio Web Inmobiliaria JAX</h3>
+            <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Solución inmobiliaria personalizada con búsqueda avanzada, galerías interactivas y gestión de propiedades dinámica.</p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-label-sm font-label-sm text-surface-tint px-2 py-1 bg-surface-tint/10 rounded">WordPress</span>
+              <span className="text-label-sm font-label-sm text-surface-tint px-2 py-1 bg-surface-tint/10 rounded">ACF PRO</span>
+              <span className="text-label-sm font-label-sm text-surface-tint px-2 py-1 bg-surface-tint/10 rounded">Bootstrap</span>
+            </div>
+            <a href="https://residencialvistaalvalle.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-surface-tint hover:text-primary transition-colors group-hover:translate-x-1 duration-300">
+              Visitar Web <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+
+
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

@@ -1,72 +1,46 @@
-import React from "react";
+import React from 'react';
 
-const Skills = () => {
+export default function Skills() {
   return (
-    <section className="py-[120px] px-[24px]" id="skills">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-16 reveal-on-scroll">
-          <h2 className="font-headline-lg text-headline-lg mb-4">Technical Stack</h2>
-          <div className="w-20 h-1.5 bg-primary-container rounded-full"></div>
+    <section className="py-stack-lg border-t border-border-subtle/50 animate-on-scroll" id="tecnologias">
+      <h2 className="text-headline-md font-headline-md text-primary mb-10 inline-flex items-center gap-2">
+        <span className="material-symbols-outlined">terminal</span> Stack Tecnológico
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Frontend */}
+        <div className="glass-panel rounded-xl p-6">
+          <h3 className="text-label-md font-label-md text-secondary mb-4 uppercase tracking-wider border-b border-border-subtle pb-2">Frontend</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">javascript</span> React</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">javascript</span> Angular</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">code</span> TypeScript</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">css</span> Tailwind CSS</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">html</span> HTML5/CSS3</span>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Frontend */}
-          <div className="glass-card p-8 rounded-xl glow-hover reveal-on-scroll">
-            <span className="material-symbols-outlined text-primary-container mb-4 text-4xl">code</span>
-            <h3 className="font-headline-md text-headline-md mb-6">Frontend</h3>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">React JS</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">JavaScript</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">TypeScript</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Tailwind CSS</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Angular</span>
-            </div>
+        {/* Backend */}
+        <div className="glass-panel rounded-xl p-6">
+          <h3 className="text-label-md font-label-md text-primary mb-4 uppercase tracking-wider border-b border-border-subtle pb-2">Backend & APIs</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">terminal</span> Node.js</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">data_object</span> Express</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">php</span> PHP</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">api</span> RESTful APIs</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">security</span> JWT / OAuth</span>
           </div>
-          {/* Backend */}
-          <div className="glass-card p-8 rounded-xl glow-hover reveal-on-scroll" style={{ transitionDelay: '100ms' }}>
-            <span className="material-symbols-outlined text-primary-container mb-4 text-4xl">terminal</span>
-            <h3 className="font-headline-md text-headline-md mb-6">Backend</h3>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">CodeIgniter 4</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Laravel</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Node.js</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">RESTful APIs</span>
-            </div>
-          </div>
-          {/* DB & Tools */}
-          <div className="glass-card p-8 rounded-xl glow-hover reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
-            <span className="material-symbols-outlined text-primary-container mb-4 text-4xl">database</span>
-            <h3 className="font-headline-md text-headline-md mb-6">Database & Tools</h3>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">MySQL</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">SQL Server</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">MongoDB</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">GIT/GitHub</span>
-            </div>
-          </div>
-          {/* Architecture */}
-          <div className="glass-card p-8 rounded-xl glow-hover reveal-on-scroll" style={{ transitionDelay: '300ms' }}>
-            <span className="material-symbols-outlined text-primary-container mb-4 text-4xl">architecture</span>
-            <h3 className="font-headline-md text-headline-md mb-6">Architecture</h3>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">JWT</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Google OAuth 2.0</span>
-            </div>
-          </div>
-          {/* CMS/Ecommerce */}
-          <div className="glass-card p-8 rounded-xl glow-hover reveal-on-scroll lg:col-span-2" style={{ transitionDelay: '400ms' }}>
-            <span className="material-symbols-outlined text-primary-container mb-4 text-4xl">shopping_cart</span>
-            <h3 className="font-headline-md text-headline-md mb-6">E-commerce & CMS</h3>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">WordPress</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">ACF PRO</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">WooCommerce</span>
-              <span className="px-3 py-1 bg-surface-container-high text-on-surface-variant text-body-md rounded border border-white/5">Shopify</span>
-            </div>
+        </div>
+        {/* Tools & DBs */}
+        <div className="glass-panel rounded-xl p-6">
+          <h3 className="text-label-md font-label-md text-surface-tint mb-4 uppercase tracking-wider border-b border-border-subtle pb-2">Databases & Tools</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">database</span> MySQL</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">storage</span> PostgreSQL</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">data_usage</span> MongoDB</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">cloud</span> Firebase</span>
+            <span className="tech-chip px-3 py-1 rounded-full text-label-sm font-label-sm text-text-secondary flex items-center gap-1 cursor-default"><span className="material-symbols-outlined text-[14px]">commit</span> Git / GitHub</span>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

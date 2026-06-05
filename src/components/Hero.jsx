@@ -1,125 +1,106 @@
-import React, { useEffect, useRef } from "react";
-import photoUrl from "../assets/photo.png";
+import React, { useState, useEffect } from 'react';
 
-const Hero = () => {
-  const canvasRef = useRef(null);
+const codeTokens = [
+  { text: 'const', color: 'text-[#c678dd]' },
+  { text: ' ', color: '' },
+  { text: 'developer', color: 'text-[#e5c07b]' },
+  { text: ' = {\n  ', color: 'text-[#abb2bf]' },
+  { text: 'name', color: 'text-[#e06c75]' },
+  { text: ': ', color: 'text-[#abb2bf]' },
+  { text: "'Raúl Vigil'", color: 'text-[#98c379]' },
+  { text: ',\n  ', color: 'text-[#abb2bf]' },
+  { text: 'role', color: 'text-[#e06c75]' },
+  { text: ': ', color: 'text-[#abb2bf]' },
+  { text: "'Full Stack Web Developer'", color: 'text-[#98c379]' },
+  { text: ',\n  ', color: 'text-[#abb2bf]' },
+  { text: 'focus', color: 'text-[#e06c75]' },
+  { text: ': [\n    ', color: 'text-[#abb2bf]' },
+  { text: "'Performance'", color: 'text-[#98c379]' },
+  { text: ',\n    ', color: 'text-[#abb2bf]' },
+  { text: "'Security'", color: 'text-[#98c379]' },
+  { text: ',\n    ', color: 'text-[#abb2bf]' },
+  { text: "'Scalability'", color: 'text-[#98c379]' },
+  { text: '\n  ],\n  ', color: 'text-[#abb2bf]' },
+  { text: 'status', color: 'text-[#e06c75]' },
+  { text: ': ', color: 'text-[#abb2bf]' },
+  { text: "'Available for hire'", color: 'text-[#98c379]' },
+  { text: '\n};\n\n', color: 'text-[#abb2bf]' },
+  { text: 'developer', color: 'text-[#e5c07b]' },
+  { text: '.', color: 'text-[#abb2bf]' },
+  { text: 'init', color: 'text-[#61afef]' },
+  { text: '();', color: 'text-[#abb2bf]' }
+];
+
+const TypewriterIDE = () => {
+  const [charIndex, setCharIndex] = useState(0);
+  const totalChars = codeTokens.reduce((acc, token) => acc + token.text.length, 0);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    let width, height, particles;
-    let animationFrameId;
-
-    function init() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      particles = [];
-      for (let i = 0; i < 60; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 2 + 1,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5
-        });
-      }
+    if (charIndex < totalChars) {
+      const timeout = setTimeout(() => {
+        setCharIndex(prev => prev + 1);
+      }, Math.random() * 40 + 20); // Random typing speed between 20ms and 60ms
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setCharIndex(0); // Restart typing animation after a delay
+      }, 6000);
+      return () => clearTimeout(timeout);
     }
+  }, [charIndex, totalChars]);
 
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#00f2ff';
-      ctx.strokeStyle = 'rgba(0, 242, 255, 0.1)';
-      
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
+  let currentCount = 0;
+  const renderedTokens = [];
 
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Connect lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
+  for (let i = 0; i < codeTokens.length; i++) {
+    const token = codeTokens[i];
+    if (currentCount + token.text.length <= charIndex) {
+      renderedTokens.push(<span key={i} className={token.color}>{token.text}</span>);
+      currentCount += token.text.length;
+    } else {
+      const remaining = charIndex - currentCount;
+      if (remaining > 0) {
+        renderedTokens.push(<span key={i} className={token.color}>{token.text.substring(0, remaining)}</span>);
       }
-      animationFrameId = requestAnimationFrame(draw);
+      break;
     }
-
-    window.addEventListener('resize', init);
-    init();
-    draw();
-
-    return () => {
-      window.removeEventListener('resize', init);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+  }
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 overflow-hidden px-[24px]" id="hero">
-      <canvas ref={canvasRef} id="hero-canvas" className="absolute top-0 left-0 w-full h-full z-0 opacity-40 pointer-events-none" />
-      
-      <div className="max-w-[1200px] mx-auto w-full relative z-10 grid md:grid-cols-2 gap-12 items-center">
-        <div className="reveal-on-scroll active">
-          <div className="inline-block px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-label-caps font-label-caps mb-6">
-            DISPONIBLE PARA NUEVOS PROYECTOS
-          </div>
-          <h1 className="font-display-lg text-display-lg mb-6 leading-tight">
-            Raúl Vigil — <span className="text-primary-container">Ingeniero en Sistemas</span> & Full Stack
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
-            +3 años transformando requerimientos de negocio en aplicaciones web robustas y escalables. Especialista en ecosistemas JavaScript (React) y PHP (CodeIgniter, Laravel).
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a 
-              className="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(0,242,255,0.3)]" 
-              href="#projects"
-            >
-              Ver Proyectos
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
-            <a 
-              className="border border-outline px-8 py-4 rounded-lg font-bold text-on-surface hover:bg-surface-container-high transition-colors" 
-              href="#contact"
-            >
-              Contactar
-            </a>
-          </div>
-        </div>
-        
-        <div className="hidden md:block relative reveal-on-scroll active delay-200">
-          <div className="aspect-square relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-primary/10 rounded-full blur-[100px]"></div>
-            <img 
-              alt="Raúl Vigil" 
-              className="relative z-10 w-full h-full object-cover rounded-3xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700" 
-              src={photoUrl.src || photoUrl}
-              fetchpriority="high"
-              loading="eager"
-            />
-          </div>
-        </div>
+    <div className="text-sm lg:text-base leading-relaxed whitespace-pre font-label-md tracking-wide h-[420px] w-[400px] flex flex-col justify-start">
+      <div>
+        {renderedTokens}
+        <span className="inline-block w-[10px] h-[18px] bg-[#61afef] animate-pulse ml-[4px] align-middle shadow-[0_0_8px_#61afef]"></span>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Hero;
+export default function Hero() {
+  return (
+    <section className="min-h-[819px] flex flex-col xl:flex-row justify-between items-center py-stack-lg relative gap-12" id="inicio">
+      <div className="flex-1 w-full max-w-4xl relative z-10">
+        <h1 className="text-3xl md:text-7xl lg:text-8xl font-extrabold text-text-primary mb-6 relative z-10 fade-in-up tracking-tight">
+          Raúl Vigil <span className="text-surface-tint opacity-50 hidden md:inline">|</span> <br className="block" />Desarrollador Web Full Stack <span className="text-secondary text-[0.4em] align-middle px-4 py-2 rounded-full border border-secondary/30 bg-secondary/10 ml-2 hidden lg:inline-block tracking-normal">Mid-Level</span>
+        </h1>
+        <p className="text-xl md:text-2xl text-on-surface-variant mb-10 max-w-3xl relative z-10 fade-in-up delay-100 leading-relaxed">
+          Transformo requerimientos de negocio en aplicaciones web robustas, seguras y de alto rendimiento. Especializado en React, Node.js y ecosistemas PHP modernos.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 relative z-10 fade-in-up delay-200">
+          <a href="#proyectos" className="btn-primary px-8 py-4 rounded font-label-md text-label-md font-bold inline-flex items-center justify-center gap-2">
+            <span className="material-symbols-outlined">code</span> Ver Proyectos
+          </a>
+          <a href="#contacto" className="btn-secondary px-8 py-4 rounded font-label-md text-label-md inline-flex items-center justify-center gap-2">
+            <span className="material-symbols-outlined">mail</span> Contratar Freelance
+          </a>
+        </div>
+      </div>
+
+      {/* Abstract decorative code element */}
+      <div className="hidden xl:block shrink-0 opacity-60 pointer-events-none fade-in-up delay-300">
+        <TypewriterIDE />
+      </div>
+    </section>
+  );
+}

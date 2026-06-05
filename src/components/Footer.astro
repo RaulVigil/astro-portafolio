@@ -1,17 +1,28 @@
 ---
-const currentYear = new Date().getFullYear();
+import { siteConfig } from "../data";
 ---
 
-<footer class="bg-surface-container-lowest border-t border-white/5 py-[64px] md:py-[120px]">
-  <div class="max-w-[1200px] mx-auto px-[24px] flex flex-col md:flex-row justify-between items-center gap-8">
-    <span class="font-headline-md text-headline-md font-bold text-on-surface">Raúl Vigil</span>
-    <p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left opacity-80 hover:opacity-100 transition-opacity">
-      © {currentYear} Raúl Vigil. Portafolio Web.
-    </p>
-    <div class="flex gap-6">
-      <a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-body-md text-body-md" href="https://www.linkedin.com/in/raulvigil/" target="_blank" aria-label="Perfil de LinkedIn de Raúl Vigil">LinkedIn</a>
-      <a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-body-md text-body-md" href="https://github.com/RaulVigil" target="_blank" aria-label="Perfil de GitHub de Raúl Vigil">GitHub</a>
-      <a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-body-md text-body-md" href="mailto:rauleduardovigil@gmail.com" aria-label="Enviar un correo electrónico a Raúl Vigil">Email</a>
-    </div>
-  </div>
+<footer class="w-full py-stack-md bg-surface-dim border-t border-border-subtle mt-10 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-6">
+<div class="text-headline-md font-headline-md text-primary">
+                raulo.dev
+            </div>
+<div class="flex gap-6">
+<a aria-label="GitHub" class="text-text-secondary hover:text-surface-tint transition-all opacity-80 hover:opacity-100" href={siteConfig.socials.github} target="_blank">
+<span class="material-symbols-outlined text-[24px]">code</span>
+</a>
+<a aria-label="LinkedIn" class="text-text-secondary hover:text-surface-tint transition-all opacity-80 hover:opacity-100" href={siteConfig.socials.linkedin} target="_blank">
+<span class="material-symbols-outlined text-[24px]">work</span>
+</a>
+<a aria-label="Email" class="text-text-secondary hover:text-surface-tint transition-all opacity-80 hover:opacity-100" href={`mailto:${siteConfig.email}`}>
+<span class="material-symbols-outlined text-[24px]">mail</span>
+</a>
+<a aria-label="WhatsApp" class="text-text-secondary hover:text-surface-tint transition-all opacity-80 hover:opacity-100" href={`https://wa.me/${siteConfig.phone.replace(/[^0-9]/g, '')}`} target="_blank">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</a>
+</div>
+<div class="text-label-sm font-label-sm text-text-secondary">
+                © 2026 Raúl Vigil. Built with precision.
+            </div>
+</div>
 </footer>

@@ -3,23 +3,142 @@ import { navItems } from "../data";
 import cvUrl from "../assets/CV_RaulVigil.pdf";
 ---
 
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300 ease-in-out">
-  <div class="max-w-[1200px] mx-auto flex justify-between items-center px-[24px] py-4">
-    <span class="font-headline-md text-headline-md font-bold text-primary-fixed">Raúl Vigil</span>
-    
-    <div class="hidden md:flex items-center gap-8">
-      {navItems.map((item, index) => (
-        <a 
-          class={`font-body-md text-body-md transition-colors duration-300 ${index === 0 ? 'text-primary-fixed-dim font-bold border-b-2 border-primary py-1' : 'text-outline hover:text-primary-fixed'}`} 
-          href={item.href}
-        >
-          {item.label}
-        </a>
-      ))}
+<header>
+  <nav class="fixed top-0 left-0 w-full z-50 bg-glass-fill backdrop-blur-md border-b border-border-subtle shadow-sm transition-all duration-300">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto relative z-50">
+      <div class="text-body-lg font-headline-md font-bold text-primary tracking-tighter">
+        raulo.dev
+      </div>
+      
+      <div class="hidden md:flex space-x-6">
+        {navItems.map((item, index) => (
+          <a 
+            class={`font-label-md text-label-md transition-colors duration-300 font-medium hover:text-primary ${index === 0 ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'text-on-surface-variant'}`} 
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+      
+      <a href={cvUrl} target="_blank" class="hidden md:inline-flex btn-secondary px-4 py-2 rounded font-label-md text-label-md items-center gap-2 hover:scale-95 duration-200">
+        <span class="material-symbols-outlined text-[18px]">download</span> Descargar CV
+      </a>
+      
+      <!-- Premium Animated Burger Button -->
+      <button id="mobile-menu-btn" class="hamburger flex md:hidden flex-col justify-between p-2 focus:outline-none w-8 h-6 relative z-60" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </nav>
+
+  <!-- Premium Full-Screen Mobile Menu Overlay -->
+  <!-- Moved OUTSIDE of the <nav> to prevent backdrop-blur from breaking the 'fixed' containing block -->
+  <div id="mobile-menu" class="fixed inset-0 w-full h-screen z-40 bg-[#0a0e14] flex flex-col justify-start items-center pt-28 pb-8 gap-6 opacity-0 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] translate-y-[-100%] overflow-y-auto">
     
-    <a href={cvUrl} target="_blank" rel="noopener noreferrer" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform inline-block">
-      Resume
+    {/* Decorative background blob for the menu */}
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    {navItems.map((item, index) => (
+      <a 
+        class={`mobile-nav-link text-3xl font-headline-md font-bold tracking-tight transform translate-y-10 opacity-0 transition-all duration-500 hover:text-primary ${index === 0 ? 'text-primary' : 'text-on-surface-variant'}`} 
+        style={`transition-delay: ${index * 100 + 100}ms`}
+        href={item.href}
+      >
+        {item.label}
+      </a>
+    ))}
+    
+    <div class="w-16 h-[2px] bg-border-subtle my-2 mobile-nav-link transform translate-y-10 opacity-0 transition-all duration-500" style={`transition-delay: ${navItems.length * 100 + 100}ms`}></div>
+
+    <a href={cvUrl} target="_blank" class="mobile-nav-link transform translate-y-10 opacity-0 transition-all duration-500 btn-primary px-8 py-3 rounded-full font-label-md text-base items-center gap-2 flex mt-2 shadow-[0_0_20px_rgba(0,210,255,0.3)] mb-8" style={`transition-delay: ${(navItems.length + 1) * 100 + 100}ms`}>
+      <span class="material-symbols-outlined text-[20px]">download</span> Descargar CV
     </a>
   </div>
-</nav>
+</header>
+
+<style>
+  /* Hamburger CSS Animation */
+  .hamburger {
+    cursor: pointer;
+  }
+  .hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    border-radius: 2px;
+    transform-origin: left center;
+  }
+  /* Middle line is shorter for a cooler look */
+  .hamburger span:nth-child(2) {
+    width: 70%;
+    margin-left: auto;
+  }
+  
+  /* Open state */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg);
+    width: 110%;
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    width: 110%;
+  }
+</style>
+
+<script>
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+  const body = document.body;
+
+  function toggleMenu() {
+    const isOpen = mobileBtn?.classList.contains('open');
+    
+    if (isOpen) {
+      // Close
+      mobileBtn.classList.remove('open');
+      mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-100%]');
+      body.style.overflow = '';
+      
+      // Reset items animation
+      navLinks.forEach(link => {
+        link.classList.remove('translate-y-0', 'opacity-100');
+        link.classList.add('translate-y-10', 'opacity-0');
+      });
+    } else {
+      // Open
+      mobileBtn.classList.add('open');
+      mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-100%]');
+      mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      body.style.overflow = 'hidden'; // Prevent scrolling
+      
+      // Animate items in
+      setTimeout(() => {
+        navLinks.forEach(link => {
+          link.classList.remove('translate-y-10', 'opacity-0');
+          link.classList.add('translate-y-0', 'opacity-100');
+        });
+      }, 50);
+    }
+  }
+
+  mobileBtn?.addEventListener('click', toggleMenu);
+
+  // Close menu when a link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileBtn?.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>

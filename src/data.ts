@@ -12,12 +12,12 @@ export const siteConfig = {
 };
 
 export const navItems = [
-  { label: "Inicio", href: "#home" },
-  { label: "Sobre mí", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Proyectos", href: "#projects" },
-  { label: "Experiencia", href: "#experience" },
-  { label: "Contacto", href: "#contact" },
+  { label: "Inicio", href: "#inicio" },
+  { label: "Sobre Mí", href: "#sobre-mi" },
+  { label: "Tecnologías", href: "#tecnologias" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 export const skills = {
@@ -40,12 +40,12 @@ export const skills = {
 
 export const projects = [
   {
-    title: "Sitio Web Vista al valle ",
-    description: "Sitio web para la constructora Jax Investment plant, para la construcción de residenciales en El Salvador.",
+    title: "Sitio Web Inmobiliaria JAX",
+    description: "Sitio web para la constructora Jax Investment plant, enfocado en la construcción de residenciales en El Salvador.",
     tech: ["Wordpress", "Divi", "Woody Snippet", "Slick Slider", "Advanced Custom Fields"],
     github: "",
     link: "https://residencialvistaalvalle.com/",
-    image: "https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772745584/vistaalvalle/unnamed_3_mp3aee.jpg?_s=public-apps",
+    image: "/images/jax-website.png",
   },
   {
     title: "Sistema veterinario",

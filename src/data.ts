@@ -70,6 +70,14 @@ export const projects = [
     github: "https://github.com/RaulVigil/finance-app",
     link: "https://financeapp.raulo.dev/",
     image: "https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps",
+  },
+  {
+    title: "Kanvan Dev – Plataforma SaaS de Colaboración",
+    description: "Plataforma web de gestión de proyectos al estilo Trello con tableros drag & drop, vistas de línea de tiempo (Gantt) y control de accesos mediante planes de suscripción. Arquitectura backend con Server Actions y tipado estricto end-to-end.",
+    tech: ["Next.js 16", "TypeScript", "Supabase", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+    github: "https://github.com/RaulVigil/kanvan-dev",
+    link: "https://kanvan-dev.vercel.app/",
+    image: "/images/kanban-dev.png",
   }
 ];
 

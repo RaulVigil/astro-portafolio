@@ -24,7 +24,7 @@ export default function Projects() {
               <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">JWT</span>
             </div>
             <a href="https://financeapp.raulo.dev/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-surface-tint hover:text-primary transition-colors group-hover:translate-x-1 duration-300">
-              Visitar App <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+              Ver Demo <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
             </a>
           </div>
         </div>
@@ -70,7 +70,32 @@ export default function Projects() {
           </div>
         </div>
 
-
+        {/* Project 4 — Kanvan Dev */}
+        <div className="glass-panel rounded-xl overflow-hidden group">
+          <div className="h-48 bg-surface-container-high relative overflow-hidden">
+            <img src="/images/kanban-dev.png" alt="Kanvan Dev SaaS" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-body-lg font-headline-md text-text-primary mb-2">Kanvan Dev – Plataforma</h3>
+            <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Plataforma de gestión de proyectos con tableros drag & drop, vistas Gantt y control de accesos por suscripción. Server Actions y tipado end-to-end.</p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">Next.js 16</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">TypeScript</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">Supabase</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">Prisma</span>
+              <span className="text-label-sm font-label-sm text-primary px-2 py-1 bg-primary/10 rounded">PostgreSQL</span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://kanvan-dev.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-surface-tint hover:text-primary transition-colors group-hover:translate-x-1 duration-300">
+                Ver Demo <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+              </a>
+              <a href="https://github.com/RaulVigil/kanvan-dev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-secondary hover:text-tertiary transition-colors group-hover:translate-x-1 duration-300">
+                Ver Código <span className="material-symbols-outlined ml-1 text-[18px]">code</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>

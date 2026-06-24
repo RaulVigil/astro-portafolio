@@ -11,7 +11,7 @@ export default function Projects() {
         {/* Project 1 */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps" alt="FinanceApp" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/f_auto,q_auto/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps" alt="FinanceApp" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">
@@ -32,7 +32,7 @@ export default function Projects() {
         {/* Project 2 */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps" alt="Vet Admin" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 filter grayscale group-hover:grayscale-0" />
+            <img src="https://res.cloudinary.com/djyulfuk6/image/upload/f_auto,q_auto/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps" alt="Sistema Administrativo Veterinaria" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 filter grayscale group-hover:grayscale-0" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">
@@ -53,7 +53,7 @@ export default function Projects() {
         {/* Project 3 */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="/images/jax-website.png" alt="Real Estate" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <img src="/images/jax-website.png" alt="Sitio Web Inmobiliaria JAX" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">
@@ -73,7 +73,7 @@ export default function Projects() {
         {/* Project 4 — Kanvan Dev */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="/images/kanban-dev.png" alt="Kanvan Dev SaaS" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <img src="/images/kanban-dev.png" alt="Kanvan Dev – Plataforma SaaS de Colaboración" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">

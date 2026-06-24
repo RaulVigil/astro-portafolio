@@ -1,10 +1,12 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 export const siteConfig = {
-  title: "Raúl - Desarrollador Web Full Stack",
-  description: "Portafolio profesional de Raúl, desarrollador web especializado en crear experiencias digitales modernas y escalables.",
+  title: "Raúl Vigil | Desarrollador Web Full Stack",
+  description: "Portafolio profesional de Raúl Vigil, Ingeniero en Sistemas y Desarrollador Full Stack en El Salvador. Especializado en React, Next.js, Node.js, PHP y TypeScript. Disponible para proyectos freelance y remotos en Latam.",
+  keywords: "desarrollador web, full stack, react, next.js, node.js, php, typescript, el salvador, freelance, portafolio, ingeniero sistemas",
   email: "rauleduardovigil@gmail.com",
   phone: "+503 75965375",
+  twitter: "@raulvigil",
   socials: {
     github: "https://github.com/RaulVigil",
     linkedin: "https://www.linkedin.com/in/raulvigil/",
@@ -16,6 +18,7 @@ export const navItems = [
   { label: "Sobre Mí", href: "#sobre-mi" },
   { label: "Tecnologías", href: "#tecnologias" },
   { label: "Proyectos", href: "#proyectos" },
+  { label: "Experiencia", href: "#experiencia" },
   { label: "Servicios", href: "#servicios" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -53,7 +56,7 @@ export const projects = [
     tech: ["Codeigniter", "Bootstrap", "Firebase", "Fontawesome"],
     github: "",
     link: "",
-    image: "https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps",
+    image: "https://res.cloudinary.com/djyulfuk6/image/upload/f_auto,q_auto/fl_preserve_transparency/v1772746176/vistaalvalle/sitio-veterinaria_raxygp.jpg?_s=public-apps",
   },
   {
     title: "Ecommerce The Majes Shop",
@@ -61,7 +64,7 @@ export const projects = [
     tech: ["Elementor", "Wordpress", "Woocommerce", "Slick Slider"],
     github: "",
     link: "",
-    image: "https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746308/vistaalvalle/the-majes_iqe71d.jpg?_s=public-apps",
+    image: "https://res.cloudinary.com/djyulfuk6/image/upload/f_auto,q_auto/fl_preserve_transparency/v1772746308/vistaalvalle/the-majes_iqe71d.jpg?_s=public-apps",
   },
   {
     title: "Finance App",
@@ -69,7 +72,7 @@ export const projects = [
     tech: ["React", "Codeigniter", "JWT", "Mysql", "Tailwind CSS"],
     github: "https://github.com/RaulVigil/finance-app",
     link: "https://financeapp.raulo.dev/",
-    image: "https://res.cloudinary.com/djyulfuk6/image/upload/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps",
+    image: "https://res.cloudinary.com/djyulfuk6/image/upload/f_auto,q_auto/fl_preserve_transparency/v1772746522/vistaalvalle/Gemini_Generated_Image_qvqb16qvqb16qvqb_1_1_khygwg.jpg?_s=public-apps",
   },
   {
     title: "Kanvan Dev – Plataforma SaaS de Colaboración",

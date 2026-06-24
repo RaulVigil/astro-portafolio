@@ -5,13 +5,33 @@ import Hero from '../components/Hero.jsx';
 import About from '../components/About.jsx';
 import Skills from '../components/Skills.jsx';
 import Projects from '../components/Projects.jsx';
+import Experience from '../components/Experience.jsx';
 import Services from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-import { siteConfig } from '../data';
+import { siteConfig, projects } from '../data';
+
+const projectsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Proyectos Destacados",
+  "numberOfItems": projects.length,
+  "itemListElement": projects.map((p, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "CreativeWork",
+      "name": p.title,
+      "description": p.description,
+      "url": p.link || p.github || "https://raulo.dev/#proyectos",
+      "image": p.image,
+      "about": { "@type": "Thing", "name": p.tech.join(", ") }
+    }
+  }))
+};
 ---
 
-<Layout title={siteConfig.title} description={siteConfig.description}>
+<Layout title={siteConfig.title} description={siteConfig.description} keywords={siteConfig.keywords}>
   <Header />
   
   <main class="pt-[100px] pb-stack-lg max-w-container-max mx-auto px-gutter md:px-[24px]">
@@ -19,9 +39,13 @@ import { siteConfig } from '../data';
     <About />
     <Skills />
     <Projects />
+    <Experience />
     <Services />
     <Contact />
   </main>
 
   <Footer />
+
+  <!-- Structured Data: ItemList de proyectos -->
+  <script type="application/ld+json" set:html={JSON.stringify(projectsSchema)} />
 </Layout>

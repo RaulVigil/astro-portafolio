@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 
 export const siteConfig = {
   title: "Raúl Vigil | Desarrollador Web Full Stack",
-  description: "Portafolio profesional de Raúl Vigil, Ingeniero en Sistemas y Desarrollador Full Stack en El Salvador. Especializado en React, Next.js, Node.js, PHP y TypeScript. Disponible para proyectos freelance y remotos en Latam.",
+  description: "Raúl Vigil — Desarrollador Full Stack en El Salvador. Especialista en React, Next.js, Node.js y PHP. Disponible para proyectos freelance y remotos en Latam.",
   keywords: "desarrollador web, full stack, react, next.js, node.js, php, typescript, el salvador, freelance, portafolio, ingeniero sistemas",
   email: "rauleduardovigil@gmail.com",
   phone: "+503 75965375",

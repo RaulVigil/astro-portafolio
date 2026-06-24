@@ -81,7 +81,7 @@ export default function Hero() {
     <section className="min-h-[819px] flex flex-col xl:flex-row justify-between items-center py-stack-lg relative gap-12" id="inicio">
       <div className="flex-1 w-full max-w-4xl relative z-10">
         <h1 className="text-3xl md:text-7xl lg:text-8xl font-extrabold text-text-primary mb-6 relative z-10 fade-in-up tracking-tight">
-          Raúl Vigil <span className="text-surface-tint opacity-50 hidden md:inline">|</span> <br className="block" />Desarrollador Web Full Stack <span className="text-secondary text-[0.4em] align-middle px-4 py-2 rounded-full border border-secondary/30 bg-secondary/10 ml-2 hidden lg:inline-block tracking-normal">Mid-Level</span>
+          Raúl Vigil <span className="text-surface-tint opacity-50 hidden md:inline">|</span> <br className="block" />Desarrollador Web Full Stack
         </h1>
         <p className="text-xl md:text-2xl text-on-surface-variant mb-10 max-w-3xl relative z-10 fade-in-up delay-100 leading-relaxed">
           Transformo requerimientos de negocio en aplicaciones web robustas, seguras y de alto rendimiento. Especializado en React, Node.js y ecosistemas PHP modernos.

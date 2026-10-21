@@ -1,0 +1,161 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import { siteConfig } from '../data';
+import { formatDate, isoDate } from '../lib/blog';
+
+// Al cambiar el contenido, actualizar esta fecha.
+const updated = new Date('2026-10-21');
+const { email } = siteConfig;
+---
+
+<BlogLayout
+  title="Política de privacidad | raulo.dev"
+  description="Qué datos recoge raulo.dev y el blog Prompt & Patch, para qué se usan, qué cookies hay y cómo ejercer tus derechos sobre ellos."
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <article class="max-w-[44rem] pt-14 sm:pt-20">
+      <p class="font-pp-mono text-[13px] text-pp-faint">
+        <span class="text-pp-amber">~/legal</span> $ cat privacidad.md
+      </p>
+      <h1 class="mt-5 text-[2rem] font-bold leading-[1.12] tracking-[-0.03em] sm:text-[2.75rem]">
+        Política de privacidad
+      </h1>
+      <p class="mt-4 font-pp-mono text-xs text-pp-faint">
+        Última actualización: <time datetime={isoDate(updated)}>{formatDate(updated)}</time>
+      </p>
+
+      <div class="pp-prose mt-10 border-t border-pp-border pt-10">
+        <p>
+          Esta política explica qué datos se recogen en raulo.dev (el portafolio y el blog Prompt &amp; Patch),
+          para qué se usan y qué control tienes sobre ellos. El responsable soy Raúl Vigil, desarrollador
+          independiente en El Salvador. Para cualquier tema de privacidad escríbeme a
+          <a href={`mailto:${email}`}>{email}</a>.
+        </p>
+
+        <h2 id="datos">Datos que recojo</h2>
+
+        <h3 id="formulario">Formulario de contacto</h3>
+        <p>
+          Cuando me escribes desde el formulario del portafolio envías tu nombre, tu correo, el tipo de proyecto
+          y tu mensaje. Los uso solo para responderte y dar seguimiento a tu consulta. El sitio no los guarda en
+          ninguna base de datos: se envían como correo electrónico a través de Resend, un servicio de envío de
+          emails, y llegan a mi bandeja de Gmail. Puedes pedirme que borre esos correos cuando quieras.
+        </p>
+
+        <h3 id="analitica">Analítica (Google Analytics)</h3>
+        <p>
+          Uso Google Analytics 4 para saber qué páginas se leen y cómo llegan los visitantes. Recoge datos como
+          las páginas visitadas, el tiempo en cada página, el tipo de dispositivo y navegador, la ubicación
+          aproximada (país o ciudad) y la página de origen. Google Analytics 4 no registra ni almacena
+          direcciones IP. Si no quieres que te mida, puedes instalar el
+          <a href="https://tools.google.com/dlpage/gaoptout">complemento de inhabilitación de Google Analytics</a>.
+        </p>
+
+        <h3 id="servidor">Registros del servidor</h3>
+        <p>
+          Como cualquier servidor web, el que aloja este sitio puede registrar datos técnicos de cada visita
+          (dirección IP, fecha, página solicitada y navegador) por motivos de seguridad y funcionamiento.
+        </p>
+
+        <h2 id="publicidad">Publicidad (Google AdSense)</h2>
+        <p>El blog puede mostrar anuncios de Google AdSense. Sobre esos anuncios:</p>
+        <ul>
+          <li>
+            Proveedores externos, incluido Google, usan cookies para mostrar anuncios basados en tus visitas
+            anteriores a este sitio web o a otros sitios web.
+          </li>
+          <li>
+            Las cookies de publicidad permiten a Google y a sus socios mostrarte anuncios basados en tus visitas
+            a este sitio y a otros sitios de Internet.
+          </li>
+          <li>
+            Puedes desactivar la publicidad personalizada en la
+            <a href="https://www.google.com/settings/ads">Configuración de anuncios de Google</a>, o desactivar
+            el uso de cookies de otros proveedores para publicidad personalizada en
+            <a href="https://www.aboutads.info">www.aboutads.info</a>.
+          </li>
+        </ul>
+        <p>
+          Más detalle en
+          <a href="https://policies.google.com/technologies/partner-sites">cómo usa Google la información de los sitios que utilizan sus servicios</a>.
+        </p>
+
+        <h2 id="cookies">Cookies</h2>
+        <p>
+          El código propio de este sitio no crea cookies. Las que puedes encontrar vienen de servicios de
+          terceros:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Cookie</th>
+              <th>Origen</th>
+              <th>Para qué</th>
+              <th>Duración</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Google Analytics</td>
+              <td>Distinguir visitantes</td>
+              <td>2 años</td>
+            </tr>
+            <tr>
+              <td><code>_ga_&lt;ID&gt;</code></td>
+              <td>Google Analytics</td>
+              <td>Mantener el estado de la sesión</td>
+              <td>2 años</td>
+            </tr>
+            <tr>
+              <td>Publicitarias</td>
+              <td>Google y sus socios, solo con anuncios activos</td>
+              <td>Mostrar y medir anuncios</td>
+              <td>Variable</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Puedes bloquear o borrar las cookies desde la configuración de tu navegador; el sitio sigue
+          funcionando igual.
+        </p>
+
+        <h2 id="terceros">Proveedores que tratan datos</h2>
+        <ul>
+          <li>
+            <strong>Google</strong>: Analytics, las tipografías de Google Fonts y, si están activos, los anuncios
+            de AdSense. Al cargar una página tu navegador se conecta con sus servidores y les envía tu dirección
+            IP. <a href="https://policies.google.com/privacy">Política de privacidad de Google</a>.
+          </li>
+          <li>
+            <strong>Cloudinary</strong>: sirve algunas imágenes del portafolio, así que también recibe tu
+            dirección IP al cargarlas. <a href="https://cloudinary.com/privacy">Política de privacidad de Cloudinary</a>.
+          </li>
+          <li>
+            <strong>Resend</strong>: procesa el contenido del formulario de contacto cuando lo envías.
+            <a href="https://resend.com/legal/privacy-policy">Política de privacidad de Resend</a>.
+          </li>
+        </ul>
+        <p>Estos proveedores pueden tratar los datos fuera de tu país, principalmente en Estados Unidos.</p>
+
+        <h2 id="derechos">Tus derechos</h2>
+        <p>
+          Puedes pedirme acceso a los datos que tenga sobre ti, corregirlos o eliminarlos, y oponerte a que los
+          use, escribiendo a <a href={`mailto:${email}`}>{email}</a>. Si visitas desde la Unión Europea, el
+          Espacio Económico Europeo o el Reino Unido, el RGPD te reconoce además el derecho a la portabilidad, a
+          limitar el tratamiento y a presentar una reclamación ante la autoridad de protección de datos de tu
+          país.
+        </p>
+
+        <h2 id="menores">Menores de edad</h2>
+        <p>Este sitio no está dirigido a menores de 16 años y no recojo a sabiendas datos de ellos.</p>
+
+        <h2 id="cambios">Cambios en esta política</h2>
+        <p>
+          Si esta política cambia, los cambios se publican en esta misma página y se actualiza la fecha del
+          inicio.
+        </p>
+      </div>
+    </article>
+  </div>
+</BlogLayout>

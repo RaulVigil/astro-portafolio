@@ -5,6 +5,10 @@ import { Resend } from 'resend';
 // Use import.meta.env for Vite environment variables
 const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
 
+// Form input goes into the email HTML: escape it so nobody can inject links or markup.
+const htmlEscapes: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => htmlEscapes[char]);
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
@@ -28,10 +32,10 @@ export const POST: APIRoute = async ({ request }) => {
       subject: `Nuevo lead: ${type} - ${name}`,
       html: `
         <h2>Nuevo mensaje de contacto desde tu portafolio</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Tipo de Proyecto:</strong> ${type}</p>
-        <p><strong>Mensaje:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
+        <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Tipo de Proyecto:</strong> ${escapeHtml(type ?? '')}</p>
+        <p><strong>Mensaje:</strong><br/>${escapeHtml(message).replace(/\r?\n/g, '<br/>')}</p>
       `,
     });
 

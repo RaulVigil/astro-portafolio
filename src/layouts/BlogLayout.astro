@@ -89,6 +89,7 @@ const { client: adsenseClient } = blogConfig.adsense;
       gtag('config', 'G-Q3JZVR2VG3');
     </script>
 
+    {adsenseClient && <meta name="google-adsense-account" content={adsenseClient} />}
     {adsenseClient && (
       <script
         async

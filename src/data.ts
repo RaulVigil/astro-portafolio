@@ -25,7 +25,7 @@ export const blogConfig = {
   // Google AdSense: completar cuando la cuenta esté aprobada.
   // Con `client` vacío no se carga ningún script ni se renderizan bloques de anuncios.
   adsense: {
-    client: "", // ca-pub-XXXXXXXXXXXXXXXX
+    client: "ca-pub-6956020938693205",
     slots: {
       postEnd: "",
       listing: "",

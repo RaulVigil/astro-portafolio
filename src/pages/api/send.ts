@@ -1,9 +1,10 @@
 export const prerender = false; // Ensures this route runs on the server
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { RESEND_API_KEY, RESEND_FROM_EMAIL } from 'astro:env/server';
 
-// Use import.meta.env for Vite environment variables
-const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
+// Secrets from astro:env are read at runtime; import.meta.env would be inlined into dist/server.
+const resend = new Resend(RESEND_API_KEY);
 
 // Form input goes into the email HTML: escape it so nobody can inject links or markup.
 const htmlEscapes: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -24,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const fromEmail = RESEND_FROM_EMAIL || "onboarding@resend.dev";
     
     const { data: resendData, error } = await resend.emails.send({
       from: `Portafolio <${fromEmail}>`,

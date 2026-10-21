@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -51,6 +51,14 @@ export default defineConfig({
     // Los archivos de tags llevan noindex: no tiene sentido enviarlos en el sitemap.
     sitemap({ filter: (page) => !page.includes('/blog/tags/') })
   ],
+  // `secret`: se leen al ejecutar el servidor y nunca se escriben en dist/.
+  // (En Astro 6, import.meta.env sí queda incrustado en el build.)
+  env: {
+    schema: {
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
+      RESEND_FROM_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
+    },
+  },
   markdown: {
     shikiConfig: {
       theme: 'vesper',

@@ -42,6 +42,13 @@ No duplicar esto a mano en los artículos:
 - `noindex, follow` en archivos de tags, en borradores y en `/blog/` mientras no haya artículos.
 - Índice de contenidos desde los H2/H3, artículos relacionados por tags y tiempo de lectura.
 
+## Google Search Console
+
+- **Propiedad:** de dominio, `raulo.dev`, verificada con un registro TXT `google-site-verification` en Cloudflare. **No borrar ese registro.**
+- **Enviados en Sitemaps:** `https://raulo.dev/sitemap-index.xml` y `https://raulo.dev/blog/rss.xml`. Google descubre los artículos nuevos por el RSS.
+- **Al publicar un artículo:** Inspección de URLs → URL nueva → **Solicitar indexación**, una sola vez; repetirlo no acelera nada.
+- **Seguimiento:** Indexación → Páginas. "Descubierta: actualmente sin indexar" es normal los primeros días.
+
 ## Estructura on-page
 
 - Un solo H1 (el `title`). En el markdown se empieza en `##`.

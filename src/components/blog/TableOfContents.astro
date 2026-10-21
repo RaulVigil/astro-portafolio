@@ -1,0 +1,49 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  /** `inline`: desplegable antes del contenido (móvil). `sidebar`: columna fija (desktop). */
+  variant: 'inline' | 'sidebar';
+}
+
+const { headings, variant } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{items.length > 1 && (
+  variant === 'inline' ? (
+    <details class="pp-toc group border-y border-pp-border py-4 lg:hidden">
+      <summary class="flex cursor-pointer list-none items-center justify-between font-pp-mono text-xs uppercase tracking-wider text-pp-faint [&::-webkit-details-marker]:hidden">
+        en este artículo
+        <span aria-hidden="true" class="transition-transform group-open:rotate-90">&gt;</span>
+      </summary>
+      <ol class="mt-4 space-y-2.5">
+        {items.map((h) => (
+          <li class:list={[h.depth === 3 && 'pl-4']}>
+            <a href={`#${h.slug}`} class="text-sm leading-snug text-pp-muted hover:text-pp-text">{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  ) : (
+    <nav aria-labelledby="toc-title" class="pp-toc">
+      <p id="toc-title" class="font-pp-mono text-xs uppercase tracking-wider text-pp-faint">en este artículo</p>
+      <ol class="mt-4 border-l border-pp-border">
+        {items.map((h) => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              data-toc-link={h.slug}
+              class:list={[
+                '-ml-px block border-l border-transparent py-1.5 pr-2 text-[13px] leading-snug text-pp-faint transition-colors hover:text-pp-text',
+                'aria-[current=true]:border-pp-amber aria-[current=true]:text-pp-text',
+                h.depth === 3 ? 'pl-7' : 'pl-4',
+              ]}
+            >{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+)}

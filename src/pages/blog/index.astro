@@ -1,0 +1,87 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import PostRow from '../../components/blog/PostRow.astro';
+import TagLink from '../../components/blog/TagLink.astro';
+import AdSlot from '../../components/blog/AdSlot.astro';
+import { blogConfig } from '../../data';
+import { getPosts, getTags, postUrl } from '../../lib/blog';
+
+const posts = await getPosts();
+const tags = getTags(posts);
+
+const years = Map.groupBy(posts, (post) => post.data.pubDate.getUTCFullYear());
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: blogConfig.name,
+    description: blogConfig.description,
+    url: new URL('/blog/', Astro.site).href,
+    inLanguage: 'es',
+    author: { '@type': 'Person', name: blogConfig.author.name, url: blogConfig.author.url },
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      url: new URL(postUrl(post), Astro.site).href,
+      datePublished: post.data.pubDate.toISOString(),
+    })),
+  },
+];
+---
+
+<BlogLayout
+  title={blogConfig.title}
+  description={blogConfig.description}
+  noindex={posts.length === 0}
+  schema={schema}
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <section class="max-w-3xl pt-16 pb-12 sm:pt-24 sm:pb-16">
+      <p class="font-pp-mono text-[13px] text-pp-faint">
+        <span class="text-pp-amber">~/blog</span> $ cat README.md
+      </p>
+      <h1 class="mt-5 text-[2.25rem] font-bold leading-[1.1] tracking-[-0.035em] text-balance sm:text-5xl">
+        Problemas reales de desarrollo, resueltos con código.
+      </h1>
+      <p class="mt-6 max-w-[60ch] text-lg leading-relaxed text-pp-muted">
+        Notas de trinchera sobre Astro, React, Node.js, APIs y automatización.
+        Cada artículo parte de un problema concreto, muestra el código que lo resolvió
+        y documenta lo que falló en el camino.
+      </p>
+    </section>
+
+    {tags.length > 0 && (
+      <nav aria-label="Temas" class="flex flex-wrap items-baseline gap-x-4 gap-y-2 border-y border-pp-border py-4">
+        <span class="font-pp-mono text-xs uppercase tracking-wider text-pp-faint">temas</span>
+        {tags.map((tag) => <TagLink tag={tag.name} count={tag.count} />)}
+      </nav>
+    )}
+
+    {posts.length === 0 ? (
+      <section class="border-t border-pp-border py-16 font-pp-mono text-sm text-pp-faint">
+        <p>$ ls articulos/</p>
+        <p class="mt-2">total 0 — el primer artículo está en preparación.</p>
+        <p class="mt-6">
+          Mientras tanto: <a href="/blog/rss.xml" class="text-pp-cyan underline decoration-pp-cyan/35 underline-offset-4 hover:decoration-pp-cyan">suscríbete por RSS</a>.
+        </p>
+      </section>
+    ) : (
+      <div class="max-w-4xl">
+        {[...years].map(([year, yearPosts]) => (
+          <section aria-labelledby={`y-${year}`} class="pt-12">
+            <h2 id={`y-${year}`} class="flex items-baseline gap-3 font-pp-mono text-sm text-pp-faint">
+              <span class="text-pp-text">{year}</span>
+              <span aria-hidden="true" class="h-px flex-1 translate-y-[-0.25em] bg-pp-border" />
+              <span>{yearPosts.length} {yearPosts.length === 1 ? 'artículo' : 'artículos'}</span>
+            </h2>
+            <div class="divide-y divide-pp-border">
+              {yearPosts.map((post) => <PostRow post={post} as="h3" />)}
+            </div>
+          </section>
+        ))}
+        <AdSlot slot={blogConfig.adsense.slots.listing} label="listado" class="mt-12" />
+      </div>
+    )}
+  </div>
+</BlogLayout>

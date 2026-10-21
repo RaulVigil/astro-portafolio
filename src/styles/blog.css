@@ -1,0 +1,249 @@
+/* Prompt & Patch — tipografía de lectura, bloques de código y anuncios.
+   Tokens en src/styles/global.css (@theme static, prefijo --color-pp-*). */
+
+/* ── Prosa ─────────────────────────────────────────────────────────────── */
+
+.pp-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-pp-prose);
+  overflow-wrap: break-word;
+}
+
+.pp-prose > * + * { margin-top: 1.25em; }
+
+.pp-prose h2,
+.pp-prose h3,
+.pp-prose h4 {
+  color: var(--color-pp-text);
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  scroll-margin-top: 2rem;
+}
+
+.pp-prose h2 {
+  margin-top: 2.75em;
+  font-size: 1.5rem;
+}
+
+/* El "##" de markdown como textura: pseudo-elemento, no se copia ni se indexa. */
+.pp-prose h2::before {
+  content: "## ";
+  font-family: var(--font-pp-mono);
+  font-weight: 400;
+  color: var(--color-pp-faint);
+  opacity: 0.55;
+}
+
+.pp-prose h3 {
+  margin-top: 2.25em;
+  font-size: 1.1875rem;
+}
+
+.pp-prose h4 {
+  margin-top: 2em;
+  font-size: 1rem;
+}
+
+.pp-prose h2 + *,
+.pp-prose h3 + *,
+.pp-prose h4 + * { margin-top: 0.75em; }
+
+.pp-prose strong { color: var(--color-pp-text); font-weight: 600; }
+
+.pp-prose a {
+  color: var(--color-pp-cyan);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-pp-cyan) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+
+.pp-prose a:hover { text-decoration-color: var(--color-pp-cyan); }
+
+.pp-prose ul,
+.pp-prose ol { padding-left: 1.4em; }
+
+.pp-prose ul { list-style: disc; }
+.pp-prose ol { list-style: decimal; }
+.pp-prose li + li { margin-top: 0.4em; }
+.pp-prose li > ul,
+.pp-prose li > ol { margin-top: 0.4em; }
+.pp-prose ul > li::marker { color: var(--color-pp-faint); }
+.pp-prose ol > li::marker {
+  font-family: var(--font-pp-mono);
+  font-size: 0.875em;
+  color: var(--color-pp-amber);
+}
+
+.pp-prose blockquote {
+  border-left: 2px solid var(--color-pp-amber);
+  padding-left: 1.25em;
+  color: var(--color-pp-muted);
+}
+
+.pp-prose hr {
+  margin: 3em 0;
+  border: 0;
+  border-top: 1px solid var(--color-pp-border);
+}
+
+.pp-prose img {
+  border: 1px solid var(--color-pp-border);
+  border-radius: 6px;
+}
+
+.pp-prose :not(pre) > code {
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--color-pp-border);
+  border-radius: 4px;
+  background: var(--color-pp-surface);
+  font-family: var(--font-pp-mono);
+  font-size: 0.85em;
+  color: var(--color-pp-text);
+}
+
+.pp-prose kbd {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--color-pp-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: var(--font-pp-mono);
+  font-size: 0.8em;
+}
+
+.pp-prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.pp-prose th {
+  padding: 0.6em 1em 0.6em 0;
+  border-bottom: 1px solid var(--color-pp-border);
+  text-align: left;
+  font-family: var(--font-pp-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-pp-faint);
+}
+
+.pp-prose td {
+  padding: 0.75em 1.5em 0.75em 0;
+  border-bottom: 1px solid var(--color-pp-border);
+  vertical-align: top;
+}
+
+/* En tablas el código ya va alineado en columnas: sin "chip" para no saturar. */
+.pp-prose td > code {
+  padding: 0;
+  border: 0;
+  background: none;
+  white-space: nowrap;
+}
+
+/* ── Bloques de código (marco generado en astro.config.mjs) ─────────────── */
+
+.pp-code {
+  position: relative;
+  margin-block: 1.75em;
+  border: 1px solid var(--color-pp-border);
+  border-radius: 6px;
+  background: #0f1013;
+  overflow: hidden;
+}
+
+.pp-prose > .pp-code { margin-top: 1.75em; }
+
+.pp-code-lang {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--color-pp-border);
+  font-family: var(--font-pp-mono);
+  font-size: 0.75rem;
+  color: var(--color-pp-faint);
+  pointer-events: none;
+}
+
+.pp-code pre {
+  margin: 0;
+  padding: 3.25rem 1.25rem 1.25rem;
+  overflow-x: auto;
+  background: transparent !important;
+  font-family: var(--font-pp-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.pp-code pre:focus-visible {
+  outline: 1px solid var(--color-pp-amber);
+  outline-offset: -1px;
+}
+
+.pp-code-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 2.25rem;
+  padding-inline: 1rem;
+  font-family: var(--font-pp-mono);
+  font-size: 0.75rem;
+  color: var(--color-pp-faint);
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.pp-code-copy:hover,
+.pp-code-copy:focus-visible { color: var(--color-pp-text); }
+
+.pp-code-copy:focus-visible {
+  outline: 1px solid var(--color-pp-amber);
+  outline-offset: -4px;
+}
+
+.pp-code-copy[data-copied] { color: var(--color-pp-amber); }
+
+/* ── Anuncios ──────────────────────────────────────────────────────────── */
+
+.pp-ad {
+  min-height: 280px;
+  padding-top: 1.75rem;
+  position: relative;
+}
+
+.pp-ad-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-pp-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-pp-faint);
+}
+
+/* Si AdSense no llena el bloque, no dejamos un hueco de 280px. */
+.pp-ad:has(ins[data-ad-status="unfilled"]) { display: none; }
+
+.pp-ad--placeholder {
+  display: grid;
+  place-items: center;
+  padding-top: 0;
+  border: 1px dashed var(--color-pp-border);
+  border-radius: 6px;
+}
+
+.pp-ad--placeholder .pp-ad-label { position: static; }

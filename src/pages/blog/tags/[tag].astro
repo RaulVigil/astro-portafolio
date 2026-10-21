@@ -1,0 +1,49 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import PostRow from '../../../components/blog/PostRow.astro';
+import { blogConfig } from '../../../data';
+import { getPosts, getTags, tagSlug, type Post } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return getTags(posts).map((tag) => ({
+    params: { tag: tag.slug },
+    props: {
+      tag: tag.name,
+      posts: posts.filter((post) => post.data.tags.some((t) => tagSlug(t) === tag.slug)),
+    },
+  }));
+}
+
+interface Props {
+  tag: string;
+  posts: Post[];
+}
+
+const { tag, posts } = Astro.props;
+// Archivos de tags: útiles para navegar, pero contenido duplicado para Google → noindex, follow.
+---
+
+<BlogLayout
+  title={`#${tag} — artículos | ${blogConfig.name}`}
+  description={`Artículos de ${blogConfig.name} sobre ${tag}: problemas reales de desarrollo resueltos con código.`}
+  noindex
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <section class="max-w-3xl pt-16 pb-10 sm:pt-20">
+      <p class="font-pp-mono text-[13px] text-pp-faint">
+        <span class="text-pp-amber">~/blog</span> $ grep -rl "#{tag}" articulos/
+      </p>
+      <h1 class="mt-5 font-pp-mono text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
+        <span class="text-pp-amber">#</span>{tag}
+      </h1>
+      <p class="mt-4 text-pp-muted">
+        {posts.length} {posts.length === 1 ? 'artículo' : 'artículos'} ·
+        <a href="/blog/" class="text-pp-cyan underline decoration-pp-cyan/35 underline-offset-4 hover:decoration-pp-cyan">ver todos</a>
+      </p>
+    </section>
+    <div class="max-w-4xl divide-y divide-pp-border border-t border-pp-border">
+      {posts.map((post) => <PostRow post={post} />)}
+    </div>
+  </div>
+</BlogLayout>

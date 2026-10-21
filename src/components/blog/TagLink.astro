@@ -1,0 +1,15 @@
+---
+import { tagUrl } from '../../lib/blog';
+
+interface Props {
+  tag: string;
+  count?: number;
+}
+
+const { tag, count } = Astro.props;
+---
+
+<a
+  href={tagUrl(tag)}
+  class="font-pp-mono text-xs text-pp-faint transition-colors hover:text-pp-amber focus-visible:text-pp-amber"
+>#{tag}{count !== undefined && <span class="tabular-nums"> {count}</span>}</a>

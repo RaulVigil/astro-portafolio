@@ -7,7 +7,7 @@ export default function Projects() {
         <span className="material-symbols-outlined">folder_open</span> Proyectos Destacados
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         {/* Project 1 */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
@@ -39,6 +39,7 @@ export default function Projects() {
             <h3 className="text-body-lg font-headline-md text-text-primary mb-2">Sistema Administrativo Veterinaria</h3>
             <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Plataforma de gestión completa para clínicas veterinarias, control de citas, historial clínico y facturación.</p>
             <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">React</span>
               <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">CI4</span>
               <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Bootstrap</span>
               <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Firebase</span>

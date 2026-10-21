@@ -1,0 +1,24 @@
+---
+import Logo from './Logo.astro';
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isListing = path === '/blog/' || path.startsWith('/blog/tags/');
+---
+
+<header class="border-b border-pp-border">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
+    <Logo href="/blog/" size="sm" />
+    <nav aria-label="Blog">
+      <ul class="flex items-center gap-4 font-pp-mono text-[13px] text-pp-muted sm:gap-7">
+        <li>
+          <a
+            href="/blog/"
+            aria-current={isListing ? 'page' : undefined}
+            class="transition-colors hover:text-pp-text aria-[current=page]:text-pp-text"
+          >artículos</a>
+        </li>
+        <li><a href="/" class="transition-colors hover:text-pp-text">raulo.dev</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

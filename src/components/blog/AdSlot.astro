@@ -1,0 +1,41 @@
+---
+/**
+ * Bloque de anuncio manual de AdSense.
+ * - Sin `blogConfig.adsense.client` o sin `slot` no renderiza nada en producción.
+ * - En `astro dev` muestra un marcador para revisar la ubicación.
+ * - Reserva altura para no provocar layout shift (CLS) mientras carga el anuncio.
+ * Política de AdSense: nunca dentro de elementos sticky/flotantes ni pegado a botones.
+ */
+import { blogConfig } from '../../data';
+
+interface Props {
+  /** data-ad-slot del bloque creado en el panel de AdSense. */
+  slot: string;
+  /** Nombre de la ubicación, solo para el marcador de desarrollo. */
+  label: string;
+  class?: string;
+}
+
+const { slot, label, class: className } = Astro.props;
+const { client } = blogConfig.adsense;
+const enabled = Boolean(client && slot);
+---
+
+{enabled ? (
+  <aside class:list={['pp-ad', className]} aria-label="Publicidad">
+    <span class="pp-ad-label">publicidad</span>
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client={client}
+      data-ad-slot={slot}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+    <script is:inline>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+) : import.meta.env.DEV && (
+  <div class:list={['pp-ad pp-ad--placeholder', className]} aria-hidden="true">
+    <span class="pp-ad-label">ad slot · {label}</span>
+  </div>
+)}

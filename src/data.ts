@@ -13,6 +13,26 @@ export const siteConfig = {
   }
 };
 
+export const blogConfig = {
+  name: "Prompt & Patch",
+  title: "Prompt & Patch | Blog técnico de Raúl Vigil",
+  description: "Problemas reales de desarrollo web resueltos con código: Astro, React, Node.js, APIs y automatización. Sin relleno.",
+  author: {
+    name: "Raúl Vigil",
+    url: "https://raulo.dev",
+    bio: "Ingeniero en Sistemas y desarrollador Full Stack en El Salvador. Escribe sobre problemas que resuelve en producción: React, Astro, Node.js, PHP y automatización.",
+  },
+  // Google AdSense: completar cuando la cuenta esté aprobada.
+  // Con `client` vacío no se carga ningún script ni se renderizan bloques de anuncios.
+  adsense: {
+    client: "", // ca-pub-XXXXXXXXXXXXXXXX
+    slots: {
+      postEnd: "",
+      listing: "",
+    },
+  },
+};
+
 export const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Sobre Mí", href: "#sobre-mi" },
@@ -21,6 +41,7 @@ export const navItems = [
   { label: "Experiencia", href: "#experiencia" },
   { label: "Servicios", href: "#servicios" },
   { label: "Contacto", href: "#contacto" },
+  { label: "Blog", href: "/blog/" },
 ];
 
 export const skills = {

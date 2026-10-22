@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default function Projects() {
+/** @param {{ images: Record<'jax' | 'kanban', import('../lib/images').ResponsiveImage> }} props — WebP generados en index.astro */
+export default function Projects({ images }) {
   return (
     <section className="py-stack-lg border-t border-border-subtle/50 animate-on-scroll" id="proyectos">
       <h2 className="text-headline-md font-headline-md text-primary mb-10 inline-flex items-center gap-2">
@@ -54,7 +55,7 @@ export default function Projects() {
         {/* Project 3 */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="/images/jax-website.png" alt="Sitio Web Inmobiliaria JAX" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <img src={images.jax.src} srcSet={images.jax.srcSet} sizes={images.jax.sizes} width={images.jax.width} height={images.jax.height} alt="Sitio Web Inmobiliaria JAX" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">
@@ -74,7 +75,7 @@ export default function Projects() {
         {/* Project 4 — Kanvan Dev */}
         <div className="glass-panel rounded-xl overflow-hidden group">
           <div className="h-48 bg-surface-container-high relative overflow-hidden">
-            <img src="/images/kanban-dev.png" alt="Kanvan Dev – Plataforma SaaS de Colaboración" loading="lazy" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <img src={images.kanban.src} srcSet={images.kanban.srcSet} sizes={images.kanban.sizes} width={images.kanban.width} height={images.kanban.height} alt="Kanvan Dev – Plataforma SaaS de Colaboración" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
           </div>
           <div className="p-6">

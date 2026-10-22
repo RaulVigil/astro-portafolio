@@ -10,6 +10,17 @@ import Services from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig, projects } from '../data';
+import { responsiveImage } from '../lib/images';
+import photo from '../assets/photo.png';
+import jaxWebsite from '../assets/projects/jax-website.png';
+import kanbanDev from '../assets/projects/kanban-dev.png';
+
+// WebP en dos anchos: la foto se ve a ~420px y las tarjetas de proyecto a ~576px (x2 para pantallas retina).
+const photoImage = await responsiveImage(photo, [400, 800], '(min-width: 768px) 420px, 100vw');
+const projectImages = {
+  jax: await responsiveImage(jaxWebsite, [600, 1024], '(min-width: 768px) 576px, 100vw'),
+  kanban: await responsiveImage(kanbanDev, [600, 1024], '(min-width: 768px) 576px, 100vw'),
+};
 
 const projectsSchema = {
   "@context": "https://schema.org",
@@ -36,9 +47,9 @@ const projectsSchema = {
   
   <main class="pt-[100px] pb-stack-lg max-w-container-max mx-auto px-gutter md:px-[24px]">
     <Hero client:load />
-    <About />
+    <About photo={photoImage} />
     <Skills />
-    <Projects />
+    <Projects images={projectImages} />
     <Experience />
     <Services />
     <Contact />

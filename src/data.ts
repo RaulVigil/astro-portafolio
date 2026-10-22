@@ -1,4 +1,6 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
+import jaxWebsite from './assets/projects/jax-website.png';
+import kanbanDev from './assets/projects/kanban-dev.png';
 
 export const siteConfig = {
   title: "Raúl Vigil | Desarrollador Web Full Stack",
@@ -69,7 +71,7 @@ export const projects = [
     tech: ["Wordpress", "Divi", "Woody Snippet", "Slick Slider", "Advanced Custom Fields"],
     github: "",
     link: "https://residencialvistaalvalle.com/",
-    image: "/images/jax-website.png",
+    image: jaxWebsite.src,
   },
   {
     title: "Sistema veterinario",
@@ -101,7 +103,7 @@ export const projects = [
     tech: ["Next.js 16", "TypeScript", "Supabase", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
     github: "https://github.com/RaulVigil/kanvan-dev",
     link: "https://kanvan-dev.vercel.app/",
-    image: "/images/kanban-dev.png",
+    image: kanbanDev.src,
   }
 ];
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import photoUrl from '../assets/photo.png';
 
-export default function About() {
+/** @param {{ photo: import('../lib/images').ResponsiveImage }} props — versión WebP generada en index.astro */
+export default function About({ photo }) {
   return (
     <section className="py-stack-lg border-t border-border-subtle/50 relative animate-on-scroll" id="sobre-mi">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
@@ -11,7 +11,7 @@ export default function About() {
           </h2>
           <div className="glass-panel rounded-xl p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-            <img src={photoUrl.src || photoUrl} alt="Raúl Vigil Workspace" className="w-full h-auto rounded-lg mb-6 opacity-80 filter grayscale hover:grayscale-0 transition-all duration-500 border border-border-subtle" />
+            <img src={photo.src} srcSet={photo.srcSet} sizes={photo.sizes} width={photo.width} height={photo.height} loading="lazy" decoding="async" alt="Raúl Vigil Workspace" className="w-full h-auto rounded-lg mb-6 opacity-80 filter grayscale hover:grayscale-0 transition-all duration-500 border border-border-subtle" />
             <p className="text-body-md font-body-md text-on-surface-variant">
               Con más de 3 años de experiencia en el desarrollo de software, me especializo en construir arquitecturas escalables y eficientes. Mi enfoque principal radica en la intersección entre interfaces de usuario impecables y backends robustos.
             </p>

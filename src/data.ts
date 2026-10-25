@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import jaxWebsite from './assets/projects/jax-website.png';
 import kanbanDev from './assets/projects/kanban-dev.png';
+import esOferta from './assets/projects/es-oferta-de-verdad.png';
 
 export const siteConfig = {
   title: "Raúl Vigil | Desarrollador Web Full Stack",
@@ -104,6 +105,14 @@ export const projects = [
     github: "https://github.com/RaulVigil/kanvan-dev",
     link: "https://kanvan-dev.vercel.app/",
     image: kanbanDev.src,
+  },
+  {
+    title: "¿Es oferta de verdad? – Historial de precios para Black Friday",
+    description: "PWA que guarda a diario el precio de más de 5,000 productos de 12 tiendas de El Salvador y compara las ofertas de Black Friday contra la mediana de lo que costaban antes del 1 de noviembre, no contra el precio tachado. Captura en Python sin dependencias con GitHub Actions y sitio estático en Vercel, sin servidor ni base de datos.",
+    tech: ["Python", "JavaScript", "PWA", "GitHub Actions", "Vercel"],
+    github: "https://github.com/RaulVigil/es-oferta-de-verdad",
+    link: "https://es-oferta-de-verdad.vercel.app/",
+    image: esOferta.src,
   }
 ];
 

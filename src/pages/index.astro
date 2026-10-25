@@ -14,12 +14,14 @@ import { responsiveImage } from '../lib/images';
 import photo from '../assets/photo.png';
 import jaxWebsite from '../assets/projects/jax-website.png';
 import kanbanDev from '../assets/projects/kanban-dev.png';
+import esOferta from '../assets/projects/es-oferta-de-verdad.png';
 
 // WebP en dos anchos: la foto se ve a ~420px y las tarjetas de proyecto a ~576px (x2 para pantallas retina).
 const photoImage = await responsiveImage(photo, [400, 800], '(min-width: 768px) 420px, 100vw');
 const projectImages = {
   jax: await responsiveImage(jaxWebsite, [600, 1024], '(min-width: 768px) 576px, 100vw'),
   kanban: await responsiveImage(kanbanDev, [600, 1024], '(min-width: 768px) 576px, 100vw'),
+  oferta: await responsiveImage(esOferta, [600, 1024], '(min-width: 768px) 576px, 100vw'),
 };
 
 const projectsSchema = {

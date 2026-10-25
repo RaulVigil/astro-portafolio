@@ -1,6 +1,6 @@
 import React from 'react';
 
-/** @param {{ images: Record<'jax' | 'kanban', import('../lib/images').ResponsiveImage> }} props — WebP generados en index.astro */
+/** @param {{ images: Record<'jax' | 'kanban' | 'oferta', import('../lib/images').ResponsiveImage> }} props — WebP generados en index.astro */
 export default function Projects({ images }) {
   return (
     <section className="py-stack-lg border-t border-border-subtle/50 animate-on-scroll" id="proyectos">
@@ -93,6 +93,33 @@ export default function Projects({ images }) {
                 Ver Demo <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
               </a>
               <a href="https://github.com/RaulVigil/kanvan-dev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-secondary hover:text-tertiary transition-colors group-hover:translate-x-1 duration-300">
+                Ver Código <span className="material-symbols-outlined ml-1 text-[18px]">code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Project 5 — ¿Es oferta de verdad? */}
+        <div className="glass-panel rounded-xl overflow-hidden group">
+          <div className="h-48 bg-surface-container-high relative overflow-hidden">
+            <img src={images.oferta.src} srcSet={images.oferta.srcSet} sizes={images.oferta.sizes} width={images.oferta.width} height={images.oferta.height} alt="¿Es oferta de verdad? – Historial de precios para Black Friday" loading="lazy" decoding="async" className="w-full h-full object-cover object-top opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] to-transparent"></div>
+          </div>
+          <div className="p-6">
+            <h3 className="text-body-lg font-headline-md text-text-primary mb-2">¿Es oferta de verdad?</h3>
+            <p className="text-body-md font-body-md text-text-secondary mb-4 line-clamp-2">Compara las ofertas de Black Friday de 12 tiendas salvadoreñas con lo que costaban antes, no con el precio tachado.</p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Python</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">JavaScript</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">PWA</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">GitHub Actions</span>
+              <span className="text-label-sm font-label-sm text-secondary px-2 py-1 bg-secondary/10 rounded">Vercel</span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://es-oferta-de-verdad.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-surface-tint hover:text-primary transition-colors group-hover:translate-x-1 duration-300">
+                Ver Demo <span className="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+              </a>
+              <a href="https://github.com/RaulVigil/es-oferta-de-verdad" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-label-md font-label-md text-secondary hover:text-tertiary transition-colors group-hover:translate-x-1 duration-300">
                 Ver Código <span className="material-symbols-outlined ml-1 text-[18px]">code</span>
               </a>
             </div>

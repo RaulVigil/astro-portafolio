@@ -38,12 +38,32 @@ const { Content, headings } = await render(post);
 const url = new URL(postUrl(post), Astro.site).href;
 const blogUrl = new URL('/blog/', Astro.site).href;
 const image = ogImage ?? '/images/og-image.png';
-const author = { '@type': 'Person', name: blogConfig.author.name, url: blogConfig.author.url };
+const author = {
+  '@type': 'Person',
+  name: blogConfig.author.name,
+  url: blogConfig.author.url,
+  jobTitle: 'Ingeniero en Sistemas & Full Stack Developer',
+  sameAs: [
+    siteConfig.socials.linkedin,
+    siteConfig.socials.github,
+  ],
+  knowsAbout: [
+    'Astro',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Node.js',
+    'PHP',
+    'Tailwind CSS',
+    'Vite',
+    'APIs RESTful',
+  ],
+};
 
 const schema = [
   {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': ['BlogPosting', 'TechArticle'],
     headline: title,
     description,
     url,
@@ -53,6 +73,8 @@ const schema = [
     dateModified: (updatedDate ?? pubDate).toISOString(),
     inLanguage: 'es',
     keywords: tags.join(', '),
+    dependencies: tags.join(', '),
+    proficiencyLevel: 'Expert',
     wordCount: wordCount(post.body),
     author,
     publisher: author,

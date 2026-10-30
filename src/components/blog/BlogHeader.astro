@@ -17,6 +17,14 @@ const isListing = path === '/blog/' || path.startsWith('/blog/tags/');
             class="transition-colors hover:text-pp-text aria-[current=page]:text-pp-text"
           >artículos</a>
         </li>
+        <!-- En móvil no cabe: queda en el footer y en el listado. -->
+        <li class="hidden sm:block">
+          <a
+            href="/blog/acerca/"
+            aria-current={path === '/blog/acerca/' ? 'page' : undefined}
+            class="transition-colors hover:text-pp-text aria-[current=page]:text-pp-text"
+          >acerca</a>
+        </li>
         <li><a href="/" class="transition-colors hover:text-pp-text">raulo.dev</a></li>
       </ul>
     </nav>

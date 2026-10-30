@@ -1,0 +1,114 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { blogConfig, siteConfig } from '../../data';
+import { formatDate, getPosts, isoDate } from '../../lib/blog';
+
+// Al cambiar el contenido, actualizar esta fecha.
+const updated = new Date('2026-10-30');
+const posts = await getPosts();
+const { email, socials } = siteConfig;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `Acerca de ${blogConfig.name}`,
+    url: new URL('/blog/acerca/', Astro.site).href,
+    inLanguage: 'es',
+    dateModified: updated.toISOString(),
+    about: { '@type': 'Blog', name: blogConfig.name, url: new URL('/blog/', Astro.site).href },
+    author: {
+      '@type': 'Person',
+      name: blogConfig.author.name,
+      url: blogConfig.author.url,
+      sameAs: [socials.github, socials.linkedin],
+    },
+  },
+];
+---
+
+<BlogLayout
+  title={`Acerca de ${blogConfig.name}: cómo se escribe cada artículo`}
+  description="Quién escribe Prompt & Patch, de dónde salen los temas, cómo se reproduce y verifica cada artículo y cómo se corrigen los errores."
+  schema={schema}
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <article class="max-w-[44rem] pt-14 sm:pt-20">
+      <p class="font-pp-mono text-[13px] text-pp-faint">
+        <span class="text-pp-amber">~/blog</span> $ cat ACERCA.md
+      </p>
+      <h1 class="mt-5 text-[2rem] font-bold leading-[1.12] tracking-[-0.03em] sm:text-[2.75rem]">
+        Acerca de {blogConfig.name}
+      </h1>
+      <p class="mt-4 font-pp-mono text-xs text-pp-faint">
+        Última actualización: <time datetime={isoDate(updated)}>{formatDate(updated)}</time> · {posts.length} artículos publicados
+      </p>
+
+      <div class="pp-prose mt-10 border-t border-pp-border pt-10">
+        <p>
+          {blogConfig.name} es el blog técnico de raulo.dev. Lo escribo yo, Raúl Vigil, ingeniero en sistemas y
+          desarrollador full stack en El Salvador. Cada artículo documenta un problema concreto de desarrollo web:
+          el error exacto, por qué ocurre, el código que lo resuelve y lo que se intentó sin éxito.
+        </p>
+
+        <h2 id="temas">De dónde salen los temas</h2>
+        <ul>
+          <li>
+            <strong>Mi trabajo.</strong> Problemas que resuelvo en proyectos propios y de clientes: React, Astro,
+            Node.js, PHP, despliegues e integraciones. Este mismo blog ha sido fuente de varios.
+          </li>
+          <li>
+            <strong>Regresiones recientes.</strong> Fallos que aparecen al actualizar Astro, Vite, Node.js, Tailwind
+            y otras herramientas, reportados en issues de GitHub o en las notas de versión. Si un problema no se
+            puede reproducir, por ejemplo porque exige una cuenta de pago o un hardware concreto, no se publica.
+          </li>
+        </ul>
+
+        <h2 id="verificacion">Cómo se verifica cada artículo</h2>
+        <ol>
+          <li>El problema se reproduce en un proyecto mínimo, aparte, con las versiones exactas que cita el artículo.</li>
+          <li>Los mensajes de error y las salidas de terminal se copian de esa ejecución, no de otras fuentes.</li>
+          <li>La solución se aplica sobre la misma reproducción y se vuelve a ejecutar para comprobar que funciona.</li>
+          <li>
+            Lo que no sale de la prueba (cambios entre versiones, causas, decisiones de los mantenedores) enlaza a
+            su fuente primaria: el issue, el pull request, el changelog o la documentación oficial.
+          </li>
+          <li>Lo que no se pudo verificar se dice en el propio artículo.</li>
+        </ol>
+        <p>
+          Por eso cada artículo indica con qué versiones se probó. Si usas otras, el comportamiento puede cambiar.
+        </p>
+
+        <h2 id="ia">Uso de herramientas de IA</h2>
+        <p>
+          Uso asistentes de IA para buscar temas, montar las reproducciones y redactar borradores. Nada se publica
+          sin haberse ejecutado: las versiones, los mensajes de error y el código de cada artículo salen de pruebas
+          reales, y reviso cada texto antes de publicarlo.
+        </p>
+
+        <h2 id="correcciones">Correcciones y actualizaciones</h2>
+        <p>
+          Un artículo correcto hoy puede quedar desactualizado con la próxima versión de una herramienta. Cuando eso
+          pasa, lo actualizo y la fecha de actualización aparece junto a la de publicación. Si encuentras un error,
+          o una versión en la que el arreglo ya no funciona, escríbeme a <a href={`mailto:${email}`}>{email}</a>.
+        </p>
+
+        <h2 id="publicidad">Publicidad</h2>
+        <p>
+          El blog está pensado para financiarse con anuncios de Google AdSense. Los bloques de anuncios van solo al
+          final de cada artículo y debajo del listado: nunca entre los pasos de una solución ni dentro de un bloque
+          de código. Ningún artículo es patrocinado. Qué cookies usan los anuncios y cómo desactivarlas está en la
+          <a href="/privacidad/">política de privacidad</a>.
+        </p>
+
+        <h2 id="contacto">Contacto</h2>
+        <ul>
+          <li>Correo: <a href={`mailto:${email}`}>{email}</a></li>
+          <li>GitHub: <a href={socials.github} target="_blank" rel="noopener">github.com/RaulVigil</a></li>
+          <li>LinkedIn: <a href={socials.linkedin} target="_blank" rel="noopener">linkedin.com/in/raulvigil</a></li>
+          <li>Proyectos y servicios: <a href="/">raulo.dev</a></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</BlogLayout>

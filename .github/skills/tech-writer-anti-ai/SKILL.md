@@ -16,7 +16,7 @@ información, se borra.
 2. **Voz de ingeniero senior:** analítica, pragmática, honesta. Primera persona solo para
    experiencias reales del autor; nunca inventar anécdotas, métricas ni benchmarks.
 3. **Precisión verificable:** versiones exactas (`Astro 6.4`, `Node 22`), nombres reales de APIs,
-   mensajes de error copiados tal cual. Si algo no se probó, no se afirma.
+   mensajes de error copiados tal cual. Lo que no se probó se atribuye a su fuente con enlace, o no se afirma.
 4. **Admitir lo que falló.** Los intentos descartados y los límites conocidos son parte del valor.
 5. **Español neutro y técnico.** Los términos de código no se traducen (`loader`, `build`, `slug`).
 
@@ -54,7 +54,7 @@ Opcionales al final, solo si aportan: una tabla comparativa, referencias a docum
 
 ## Código
 
-- Funcional y probado. Nada de pseudo-código presentado como real.
+- Funcional. Si no se ejecutó, se dice. Nada de pseudo-código presentado como real.
 - Siempre con lenguaje en el fence (` ```ts `, ` ```astro `, ` ```bash `, ` ```text ` para salidas).
 - Primera línea: comentario con la ruta del archivo (`// src/lib/blog.ts`).
 - Mínimo pero completo: imports incluidos, sin `...` en partes que el lector necesita copiar.
@@ -65,7 +65,7 @@ Opcionales al final, solo si aportan: una tabla comparativa, referencias a docum
 
 - [ ] La primera línea describe el síntoma, sin introducción.
 - [ ] Están las cuatro partes: problema, solución, código, troubleshooting.
-- [ ] Todo el código se ejecutó en la versión indicada.
+- [ ] El código se ejecutó en la versión indicada, o se indica que no se probó y de dónde sale.
 - [ ] Ninguna frase de la lista prohibida.
 - [ ] Cada afirmación técnica es verificable (docs, código fuente o prueba propia).
 - [ ] Al menos un enlace interno a otro artículo relacionado, si existe.

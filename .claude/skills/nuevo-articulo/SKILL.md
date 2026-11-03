@@ -1,6 +1,6 @@
 ---
 name: nuevo-articulo
-description: Crea un artículo nuevo para el blog Prompt & Patch (raulo.dev/blog), a partir de material real del autor o investigando problemas reales en repositorios públicos (issues de GitHub, release notes), siempre reproduciéndolos antes de escribir. Verifica los datos técnicos, escribe el borrador con la estructura obligatoria, valida los metadatos SEO y lo deja en src/content/blog como borrador, con los pasos para publicarlo. Usar cuando el usuario quiera escribir, redactar, investigar o preparar un artículo o post nuevo para el blog.
+description: Crea un artículo nuevo para el blog Prompt & Patch (raulo.dev/blog), a partir de material real del autor o investigando problemas reales en repositorios públicos (issues de GitHub, release notes), con pruebas básicas. Verifica los datos técnicos, escribe el borrador con la estructura obligatoria, valida los metadatos SEO y lo deja en src/content/blog como borrador, con los pasos para publicarlo. Usar cuando el usuario quiera escribir, redactar, investigar o preparar un artículo o post nuevo para el blog.
 ---
 
 # Nuevo artículo — Prompt & Patch
@@ -28,35 +28,35 @@ Si faltan el 1, el 3 o el 4, vuelve a pedirlos. **Nunca inventes** experiencias,
 
 ### Modo B: investigación (sin material del autor)
 
-El material sale de una **reproducción propia** de un problema real y público. Un resumen de lo que otros escribieron no sirve: eso es contenido sin valor propio, justo lo que Google trata como *scaled content abuse* y AdSense rechaza como "contenido de poco valor".
+Son artículos de investigación con pruebas básicas. El autor quiere rapidez: apunta a 10–15 minutos hasta el zip, sin confirmaciones intermedias. Treinta minutos ya es demasiado.
 
-1. **Buscar candidatos con demanda real**, del stack del blog (Astro, React, Node.js, Tailwind, Vite, APIs, automatización):
+1. **Elegir un tema con demanda real** del stack del blog (Astro, React, Node.js, Tailwind, Vite, APIs, IA, automatización), sin pedir confirmación. Con una o dos búsquedas basta:
    - Issues de GitHub cerrados con solución, de versiones recientes, con muchas reacciones, comentarios o duplicados. Por ejemplo, con la API pública (sin token: unas 10 búsquedas por minuto). Ajusta `created:` a los últimos 6–12 meses; sin ese filtro salen issues de versiones viejas:
      ```bash
      curl -s "https://api.github.com/search/issues?q=repo:withastro/astro+is:issue+is:closed+comments:>5+created:>2026-01-01&sort=reactions&per_page=10"
      ```
    - Guías de migración y release notes con *breaking changes* recientes.
    - Preguntas de Stack Overflow muy vistas, con respuestas desactualizadas.
-2. **Presentar 3–5 candidatos** y **esperar a que el usuario elija**. Para cada uno: el problema, la fuente con enlace, la señal de demanda, la versión afectada y si ya existe buen contenido en español.
-3. **Reproducir antes de escribir. Es obligatorio.**
-   - Proyecto mínimo en un directorio temporal, **fuera del repo del blog**, con las versiones afectadas.
-   - Provoca el error, captura el mensaje literal de tu propia ejecución, aplica la solución y verifica que funciona. Borra el directorio al terminar.
-   - Si no se puede reproducir (cuenta de pago, hardware, servicio externo), descarta el tema o díselo claramente al usuario antes de seguir.
-4. **Aportar algo que la fuente no tiene:** la reproducción mínima, la causa explicada, qué versiones afecta, alternativas o un troubleshooting más completo.
-5. **Voz y fuentes:**
-   - Sin primera persona sobre experiencias que no ocurrieron. Escribe "al reproducirlo con Astro 6.4…" o "en la prueba…".
-   - Cita con enlace el issue, PR o documentación de origen.
-   - No copies texto ni bloques largos de código de la fuente: escribe código propio y respeta las licencias (citas breves, con atribución).
-6. **Ritmo:** calidad antes que volumen, de 1 a 3 artículos por semana. Nunca generar artículos en lote.
+
+   Descarta los temas que exijan cuentas de pago, hardware especial o descargas pesadas.
+2. **Investigar en fuentes primarias:** issue, PR, release notes, documentación y código fuente. Reunir el síntoma, la causa y la solución.
+3. **Hacer una prueba básica, en una sola tanda,** si se puede en un par de minutos con `npm install`, en un directorio temporal **fuera del repo**: provocar el síntoma, aplicar el arreglo y copiar la salida literal. Nada de matrices de versiones, variantes, modelos locales ni imágenes grandes de Docker. Si no se puede en ese tiempo, no se prueba y se sigue con la investigación.
+4. **Separar lo probado de lo citado:**
+   - Probado: "en la prueba, con Astro 6.4…".
+   - No probado: se atribuye con enlace ("según el issue #123…") y el código se marca como no ejecutado.
+   - Nunca inventar cifras, mensajes de error ni experiencias. Sin primera persona sobre cosas que no ocurrieron.
+5. **Con síntoma, causa y arreglo, pasar a escribir.** Crear el archivo pronto y no abrir otra ronda de investigación.
+6. **Fuentes:** no copies texto ni bloques largos de código: escribe con tus palabras y respeta las licencias (citas breves, con atribución).
+7. **Ritmo:** de 1 a 3 artículos por semana. Nunca generar artículos en lote.
 
 ## 2. Verificar antes de redactar
 
 - **Versiones:** si el código vive en este repo, compruébalas en `package.json` o `node_modules/<paquete>/package.json`.
 - **APIs, opciones y mensajes de error:** contrástalos con la documentación oficial (Context7 si está disponible) o con el código fuente en `node_modules`.
 - **Código:** si se puede ejecutar en local sin efectos externos (no enviar correos, no cobrar, no escribir en producción), ejecútalo.
-- Lo que no se pueda verificar se presenta como observación del autor ("en este proyecto…"), nunca como regla general, o se omite.
+- Lo que no se pueda verificar se atribuye a su fuente con enlace, se presenta como observación del autor ("en este proyecto…"), nunca como regla general, o se omite.
 
-## 3. Keyword y metadatos (confirmar con el usuario)
+## 3. Keyword y metadatos
 
 Lista lo que ya existe, leyendo **solo el frontmatter** (los artículos tienen ejemplos de YAML en el cuerpo):
 
@@ -64,7 +64,7 @@ Lista lo que ya existe, leyendo **solo el frontmatter** (los artículos tienen e
 for f in src/content/blog/[!_]*.md; do echo "== $f"; sed -n '2,/^---$/p' "$f" | grep -E '^(slug|tags|draft):'; done
 ```
 
-Propón y **espera la confirmación del usuario** antes de escribir el cuerpo:
+En Modo A, propón y **espera la confirmación del usuario** antes de escribir el cuerpo. En Modo B, decide tú y sigue:
 
 - **Keyword principal** long-tail: lo que el lector escribiría en Google.
 - **`title`:** ≤ 60 caracteres, con la keyword al inicio. Es también el H1.
@@ -72,7 +72,7 @@ Propón y **espera la confirmación del usuario** antes de escribir el cuerpo:
 - **`slug`:** kebab-case con la keyword, sin fechas. **No se puede cambiar después de publicar.**
 - **`tags`:** de 1 a 5, en minúsculas, reutilizando los existentes.
 
-Si hay búsqueda web disponible, revisa los 5 primeros resultados para la keyword y di qué aportaría este artículo que ellos no tienen.
+Solo en Modo A: si hay búsqueda web disponible, revisa los 5 primeros resultados para la keyword y di qué aportaría este artículo que ellos no tienen.
 
 ## 4. Escribir
 
@@ -107,7 +107,7 @@ Resume en pocas líneas:
 - Qué se verificó y cómo, y qué queda como afirmación del autor.
 - Que el autor revise la voz antes de publicar: el artículo va firmado por él.
 
-## Publicar (solo cuando el autor lo apruebe)
+## Publicar (en Modo A, cuando el autor lo apruebe; en Modo B, directo hasta el zip)
 
 1. Cambiar a `draft: false` en el frontmatter.
 2. `pnpm build`.

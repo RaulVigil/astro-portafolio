@@ -46,6 +46,9 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
+  security: {
+    checkOrigin: false,
+  },
   integrations: [
     react(),
     // Los archivos de tags llevan noindex: no tiene sentido enviarlos en el sitemap.

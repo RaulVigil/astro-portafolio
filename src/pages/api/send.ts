@@ -1,7 +1,7 @@
 export const prerender = false; // Ensures this route runs on the server
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
-import { RESEND_API_KEY, RESEND_FROM_EMAIL } from 'astro:env/server';
+import { RESEND_API_KEY, RESEND_FROM_EMAIL, SECRET_KEY } from 'astro:env/server';
 
 // Secrets from astro:env are read at runtime; import.meta.env would be inlined into dist/server.
 const resend = new Resend(RESEND_API_KEY);
@@ -17,6 +17,34 @@ export const POST: APIRoute = async ({ request }) => {
     const email = data.get('email')?.toString();
     const type = data.get('project-type')?.toString();
     const message = data.get('message')?.toString();
+    const recaptchaToken = data.get('g-recaptcha-response')?.toString();
+
+    if (!recaptchaToken) {
+      return new Response(
+        JSON.stringify({ error: "Por favor, completa la verificación de reCAPTCHA." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validar token con Google reCAPTCHA
+    const verifyParams = new URLSearchParams();
+    verifyParams.append('secret', SECRET_KEY);
+    verifyParams.append('response', recaptchaToken);
+
+    const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: verifyParams.toString(),
+    });
+
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success) {
+      return new Response(
+        JSON.stringify({ error: "Verificación de reCAPTCHA fallida o expirada. Por favor, inténtalo de nuevo." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
 
     if (!name || !email || !message) {
       return new Response(

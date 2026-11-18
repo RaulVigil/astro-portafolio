@@ -1,0 +1,11 @@
+node_modules
+dist
+.astro
+.git
+.gitignore
+.env
+.env.*
+*.zip
+.claude
+.github
+README.md

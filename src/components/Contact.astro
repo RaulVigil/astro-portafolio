@@ -1,4 +1,5 @@
 ---
+import { SITE_KEY } from 'astro:env/server';
 ---
 
 <section class="py-stack-lg border-t border-border-subtle/50 animate-on-scroll" id="contacto">
@@ -43,14 +44,22 @@
 <label class="block text-label-md font-label-md text-text-secondary mb-2" for="message">Mensaje / Detalles del Proyecto</label>
 <textarea class="w-full input-glass rounded p-3 text-body-md font-body-md resize-none" id="message" name="message" placeholder="Describe brevemente los requerimientos..." rows="4" required></textarea>
 </div>
+
+<div class="flex justify-start overflow-x-auto py-1">
+  <div class="g-recaptcha" data-sitekey={SITE_KEY} data-theme="dark"></div>
+</div>
+
 <button class="w-full btn-primary py-4 rounded font-label-md text-label-md font-bold flex justify-center items-center gap-2" type="submit">
 <span class="material-symbols-outlined">send</span> Enviar Mensaje
-                        </button>
+</button>
 </form>
 <div id="form-message" class="hidden text-center mt-4 font-label-md p-3 rounded"></div>
 </div>
 </div>
 </section>
+
+<!-- Google reCAPTCHA v2 API -->
+<script is:inline src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
@@ -66,12 +75,22 @@
       // Reset state
       messageDiv.className = 'hidden text-center mt-4 font-label-md p-3 rounded';
       messageDiv.textContent = '';
+
+      const formData = new FormData(form);
+      const recaptchaResponse = formData.get('g-recaptcha-response');
+
+      if (!recaptchaResponse) {
+        messageDiv.textContent = 'Por favor, marca la casilla "No soy un robot".';
+        messageDiv.classList.add('bg-yellow-500/20', 'text-yellow-400', 'border', 'border-yellow-500/30', 'block');
+        messageDiv.classList.remove('hidden');
+        return;
+      }
+
       submitButton.disabled = true;
       submitButton.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Enviando...';
       submitButton.classList.add('opacity-70', 'cursor-not-allowed');
       
       try {
-        const formData = new FormData(form);
         const res = await fetch('/api/send', {
           method: 'POST',
           body: formData
@@ -84,6 +103,9 @@
           messageDiv.classList.add('bg-green-500/20', 'text-green-400', 'border', 'border-green-500/30', 'block');
           messageDiv.classList.remove('hidden');
           form.reset();
+          if (typeof (window as any).grecaptcha !== 'undefined') {
+            (window as any).grecaptcha.reset();
+          }
         } else {
           throw new Error(data.error || 'Ocurrió un error al enviar el mensaje.');
         }
@@ -91,6 +113,9 @@
         messageDiv.textContent = error.message;
         messageDiv.classList.add('bg-red-500/20', 'text-red-400', 'border', 'border-red-500/30', 'block');
         messageDiv.classList.remove('hidden');
+        if (typeof (window as any).grecaptcha !== 'undefined') {
+          (window as any).grecaptcha.reset();
+        }
       } finally {
         submitButton.disabled = false;
         submitButton.innerHTML = buttonText;

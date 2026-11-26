@@ -1,0 +1,34 @@
+# .github/workflows/publicar-programados.yml
+# Cada día a las 12:00 UTC (06:00 en El Salvador) pasa a draft: false los artículos
+# marcados con `draft: true # programado` cuyo pubDate ya llegó, y hace push a main.
+# Dokploy despliega ese push. También se puede lanzar a mano desde la pestaña Actions.
+name: Publicar artículos programados
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pasar a draft false los artículos del día
+        run: node scripts/publicar-programados.mjs
+
+      - name: Commit y push
+        run: |
+          if git diff --quiet -- src/content/blog; then
+            echo "Nada que publicar hoy."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog
+          git commit -m "feat(blog): publica artículos programados ($(date -u +%F))"
+          git push

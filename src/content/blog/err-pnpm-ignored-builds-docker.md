@@ -4,7 +4,7 @@ description: "pnpm install --frozen-lockfile pasa en local y falla en Docker con
 slug: err-pnpm-ignored-builds-docker
 pubDate: 2026-11-27
 tags: [pnpm, docker, node]
-draft: true # programado
+draft: false
 ---
 
 En local, `pnpm install --frozen-lockfile` termina bien. En el `docker build`, el mismo paso corta la imagen con:
